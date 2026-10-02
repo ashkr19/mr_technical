@@ -23,7 +23,7 @@ const UnderlinedText: React.FC<UnderlinedTextProps> = ({
   const [isHovered, setIsHovered] = useState(false);
   const style: React.CSSProperties = {
     color: color || "white",
-    fontFamily: "Roboto Slab",
+    fontFamily: fontFamily || "Inter, Arial, sans-serif",
     fontSize: fontSize || "1.9rem",
     padding: "0.5rem",
     textDecoration: "underline",

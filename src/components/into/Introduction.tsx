@@ -7,7 +7,7 @@ type IntroContainerProps = {
 const IntroContainer = styled.div<IntroContainerProps>`
   margin-top: 20px;
   padding: 15px;
-  font-family: 'Noto Sans, Helvetica, Arial, sans-serif';
+  font-family: 'Inter', Arial, sans-serif;
   line-height: 1.5;
   font-size: 1.1rem;
   margin-inline: ${(introContainerProps) => introContainerProps.inlineMargin};

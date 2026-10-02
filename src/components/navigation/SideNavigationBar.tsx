@@ -48,21 +48,11 @@ const Image = styled.img`
 
 const Name = styled.h2`
   color: white;
-  font-family: cursive;
+  font-family: "Inter", Arial, sans-serif;
   font-size: 1.9rem;
   padding: 0.5rem;
   margin: 0;
 `;
-
-// const NavLinks = styled.div`
-//   border-bottom: 1px solid white;
-//   height: 0.1rem;
-// `;
-
-// const NavLinkText = styled.h4`
-//   color: white;
-//   font-family: cursive;
-// `;
 
 const NameWrapper = styled.div`
   border-bottom: 1px solid white;
@@ -180,7 +170,7 @@ const NavScreen = () => {
             text={item}
             tag={"a"}
             color="white"
-            fontFamily="cursive"
+            fontFamily="Inter, Arial, sans-serif"
             underlinePosition={""}
             margin="0.4rem"
             fontSize="1.1rem"

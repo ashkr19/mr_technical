@@ -23,7 +23,7 @@ export const AboutMe = () => {
           />
           <p
             style={{
-              fontFamily: "Noto Sans, Helvetica, Arial, sans-serif",
+              fontFamily: "Inter, Arial, sans-serif",
               lineHeight: 1.4,
               fontSize: "1.1rem",
               fontWeight: 400,

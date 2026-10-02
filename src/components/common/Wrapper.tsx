@@ -5,7 +5,7 @@ type WrapperProps = {
 };
 export const Wrapper = styled.div<WrapperProps>`
   padding: 15px;
-  font-family: "Noto Sans, Helvetica, Arial, sans-serif";
+  font-family: "Inter", Arial, sans-serif;
   margin-inline: ${(wrapperProps) => wrapperProps.inlineMargin};
   color: rgb(51, 51, 51);
 
