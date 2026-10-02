@@ -24,7 +24,7 @@ import { Link } from "react-router-dom";
 export const socialMediaIconElements: Map<String, ReactElement>[] = [
   new Map<String, ReactElement>().set(
     "github",
-    <Link to={"https://github.com/ashishkrr"}>
+    <Link to={"https://github.com/ashkr19"}>
       <AiOutlineGithub color="white" />
     </Link>
   ),
@@ -36,7 +36,7 @@ export const socialMediaIconElements: Map<String, ReactElement>[] = [
   ),
   new Map<String, ReactElement>().set(
     "linkdin",
-    <Link to={"https://www.linkedin.com/in/ashish-kumar-48171b275/"}>
+    <Link to={"https://www.linkedin.com/in/ashish-kumar-4/"}>
       <FaLinkedinIn color="white" />
     </Link>
   ),
