@@ -77,7 +77,7 @@ export const HeaderRightIcons: Map<string, ReactElement>[] = [
         width: "100%",
         height: "100%",
       }}
-      to={"https://github.com/ashishkrr"}
+      to={"https://github.com/ashkr19"}
     >
       <AiOutlineGithub style={{ width: "1.5em", height: "1.5em" }} />
     </Link>
