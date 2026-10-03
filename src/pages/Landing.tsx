@@ -324,94 +324,150 @@ const SectionHead = styled.div`
   h2 { margin: 0; font-family: Georgia, serif; font-size: clamp(2.5rem, 5vw, 4.4rem); line-height: .98; font-weight: 500; letter-spacing: -.05em; }
   p { margin: 0; max-width: 540px; color: var(--muted); line-height: 1.75; }
 `;
-const WorkGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 18px;
-  align-items: stretch;
-  @media (max-width: 820px) { grid-template-columns: 1fr; }
-`;
-const WorkCard = styled.article`
+const WorkSection = styled.section`
   position: relative;
-  grid-column: span 4;
-  min-height: 360px;
-  padding: 28px;
-  border: 1px solid #d8d1c4;
-  border-radius: 2px;
-  background: var(--surface);
-  display: flex;
-  flex-direction: column;
   overflow: hidden;
-  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
-  &:first-child {
-    grid-column: span 8;
-    background: #efe5d3;
-  }
-  &:hover {
-    transform: translateY(-5px);
-    border-color: #bca889;
-    box-shadow: 0 22px 48px rgba(43,34,22,.09);
-  }
-  &:before {
-    content: "";
+  padding: 108px 0 116px;
+  background: #f1eadf;
+  border-bottom: 1px solid var(--line);
+  &:after {
+    content: "WORK";
     position: absolute;
-    inset: 0 0 auto;
-    height: 3px;
-    background: var(--gold);
-    transform: scaleX(.2);
-    transform-origin: left;
-    transition: transform 180ms ease;
+    right: -35px;
+    top: 70px;
+    color: rgba(118,82,31,.045);
+    font: 700 clamp(7rem, 18vw, 16rem)/.8 Georgia, serif;
+    letter-spacing: -.08em;
+    pointer-events: none;
   }
-  &:hover:before { transform: scaleX(1); }
-  .topline {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 18px;
-  }
-  .label { color: var(--gold-dark); font: 700 .62rem/1 "SFMono-Regular", Consolas, monospace; letter-spacing: .14em; }
-  .number { font-family: Georgia, serif; font-size: 1rem; color: #8c8273; }
-  h3 {
-    max-width: 680px;
-    margin: auto 0 12px;
+  @media (max-width: 760px) { padding: 76px 0 82px; }
+`;
+const WorkIntro = styled.div`
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  gap: 70px;
+  align-items: end;
+  margin-bottom: 62px;
+  .eyebrow { margin-bottom: 18px; }
+  h2 {
+    margin: 0;
+    max-width: 620px;
     font-family: Georgia, serif;
-    font-size: clamp(1.7rem, 3vw, 2.7rem);
+    font-size: clamp(3rem, 6vw, 5.6rem);
+    line-height: .9;
+    font-weight: 500;
+    letter-spacing: -.06em;
+  }
+  h2 em { color: var(--gold-dark); font-weight: 400; }
+  .intro-copy {
+    max-width: 520px;
+    color: #66615a;
+    line-height: 1.8;
+    font-size: .94rem;
+  }
+  .intro-copy strong { color: var(--ink); font-weight: 700; }
+  @media (max-width: 760px) { grid-template-columns: 1fr; gap: 22px; margin-bottom: 38px; }
+`;
+const WorkList = styled.div`
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid #cfc4b3;
+`;
+const WorkRow = styled.article`
+  position: relative;
+  display: grid;
+  grid-template-columns: 90px 1.05fr .95fr 44px;
+  gap: 28px;
+  align-items: center;
+  min-height: 190px;
+  padding: 25px 0;
+  border-bottom: 1px solid #cfc4b3;
+  transition: padding 180ms ease, background 180ms ease;
+  &:hover { padding-left: 18px; padding-right: 18px; background: rgba(255,253,248,.62); }
+  .index {
+    align-self: start;
+    color: var(--gold-dark);
+    font: 700 .68rem/1 "SFMono-Regular", Consolas, monospace;
+    letter-spacing: .12em;
+    padding-top: 7px;
+  }
+  .project-type {
+    display: inline-flex;
+    width: fit-content;
+    margin-bottom: 12px;
+    padding: 5px 8px;
+    border: 1px solid #cdbfa9;
+    border-radius: 999px;
+    color: #796a55;
+    font: 700 .55rem/1 "SFMono-Regular", Consolas, monospace;
+    letter-spacing: .1em;
+  }
+  h3 {
+    margin: 0;
+    font-family: Georgia, serif;
+    font-size: clamp(1.55rem, 2.8vw, 2.45rem);
     line-height: .98;
     font-weight: 500;
     letter-spacing: -.045em;
   }
-  p { margin: 0; color: #66635d; max-width: 660px; line-height: 1.65; font-size: .86rem; }
-  .card-footer {
-    display: flex;
-    align-items: end;
-    justify-content: space-between;
-    gap: 18px;
-    margin-top: 25px;
-    padding-top: 18px;
-    border-top: 1px solid rgba(126,111,87,.25);
+  .details {
+    color: #69645c;
+    font-size: .78rem;
+    line-height: 1.65;
   }
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
-  .tag {
-    padding: 6px 8px;
-    border: 1px solid rgba(126,111,87,.3);
-    color: #68655f;
-    font-size: .6rem;
+  .details strong {
+    display: block;
+    margin-bottom: 7px;
+    color: #39362f;
+    font-size: .63rem;
+    text-transform: uppercase;
+    letter-spacing: .11em;
+  }
+  .stack { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 12px; }
+  .stack span {
+    padding: 5px 7px;
+    border: 1px solid #d4c9b9;
+    color: #716a60;
+    font-size: .57rem;
     border-radius: 999px;
-    background: rgba(255,255,255,.28);
   }
   .arrow {
-    width: 34px; height: 34px; flex: 0 0 auto;
+    width: 36px; height: 36px;
     display: grid; place-items: center;
-    border: 1px solid rgba(126,111,87,.35);
+    border: 1px solid #bba98e;
     border-radius: 50%;
     color: var(--gold-dark);
-    background: rgba(255,255,255,.35);
+    transition: background 180ms ease, color 180ms ease, transform 180ms ease;
   }
+  &:hover .arrow { background: var(--gold-dark); color: white; transform: translateX(3px); }
   @media (max-width: 820px) {
-    grid-column: span 1;
-    &:first-child { grid-column: span 1; }
-    min-height: 310px;
+    grid-template-columns: 55px 1fr 40px;
+    .details { grid-column: 2; }
+    .arrow { grid-column: 3; grid-row: 1; }
   }
+  @media (max-width: 560px) {
+    grid-template-columns: 42px 1fr 34px;
+    min-height: 0;
+    .details { grid-column: 2 / 4; }
+    h3 { font-size: 1.65rem; }
+  }
+`;
+const WorkPrinciples = styled.div`
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin-top: 58px;
+  border: 1px solid #cfc4b3;
+  background: #cfc4b3;
+  div { padding: 22px 20px; background: #f8f3eb; }
+  span { display: block; color: var(--gold-dark); font: 700 .58rem/1 "SFMono-Regular", Consolas, monospace; letter-spacing: .12em; }
+  strong { display: block; margin-top: 12px; font-family: Georgia, serif; font-size: 1.15rem; font-weight: 500; }
+  p { margin: 7px 0 0; color: #706a61; font-size: .72rem; line-height: 1.55; }
+  @media (max-width: 650px) { grid-template-columns: 1fr; }
 `;
 const Process = styled.div`
   display: grid;
@@ -581,30 +637,43 @@ const Landing = (): ReactElement => (
         </C>
       </ServiceStrip>
 
-      <Section id="work">
+      <WorkSection id="work">
         <C>
-          <SectionHead>
-            <div><Eyebrow>Selected work</Eyebrow><h2>Real systems.<br />Real constraints.</h2></div>
-            <p>The technology matters, but the interesting part is the problem, the trade-offs and the system that has to keep working after launch.</p>
-          </SectionHead>
-          <WorkGrid>
+          <WorkIntro>
+            <div>
+              <Eyebrow>Selected work</Eyebrow>
+              <h2>Not just projects.<br /><em>Problems solved.</em></h2>
+            </div>
+            <div className="intro-copy">
+              <strong>I work across the full system.</strong> Product interfaces, APIs, services, data, messaging and cloud infrastructure — connecting the pieces when a problem does not fit neatly into one technology.
+            </div>
+          </WorkIntro>
+
+          <WorkList>
             {projects.map(({ number, title, description, tags }) => (
-              <WorkCard key={number}>
-                <div className="topline">
-                  <span className="label">CASE STUDY</span>
-                  <span className="number">{number}</span>
+              <WorkRow key={number}>
+                <span className="index">/{number}</span>
+                <div>
+                  <span className="project-type">{number === "01" ? "PLATFORM" : number === "02" ? "EVENT-DRIVEN" : "ECOMMERCE"}</span>
+                  <h3>{title}</h3>
                 </div>
-                <h3>{title}</h3>
-                <p>{description}</p>
-                <div className="card-footer">
-                  <div className="tags">{tags.map(tag => <span className="tag" key={tag}>{tag}</span>)}</div>
-                  <span className="arrow" aria-hidden="true"><FaArrowRight size={12} /></span>
+                <div className="details">
+                  <strong>What I worked on</strong>
+                  {description}
+                  <div className="stack">{tags.map(tag => <span key={tag}>{tag}</span>)}</div>
                 </div>
-              </WorkCard>
+                <span className="arrow" aria-hidden="true"><FaArrowRight size={12} /></span>
+              </WorkRow>
             ))}
-          </WorkGrid>
+          </WorkList>
+
+          <WorkPrinciples>
+            <div><span>01 · FRONTEND</span><strong>Interfaces that stay usable.</strong><p>React, Next.js, forms, dashboards and product workflows built around real user journeys.</p></div>
+            <div><span>02 · BACKEND</span><strong>Systems that handle complexity.</strong><p>Java, Spring Boot, Node.js, APIs, PostgreSQL, Redis and asynchronous services.</p></div>
+            <div><span>03 · SYSTEMS</span><strong>Architecture beyond the screen.</strong><p>Kafka, AWS, testing, observability and the engineering decisions behind reliable software.</p></div>
+          </WorkPrinciples>
         </C>
-      </Section>
+      </WorkSection>
 
       <Section id="approach">
         <C>
