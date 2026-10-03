@@ -1,359 +1,231 @@
 import styled from "styled-components";
 import { useState } from "react";
-import { FaArrowDown, FaArrowRight, FaBolt, FaCode, FaBrain } from "react-icons/fa";
+import { FaArrowRight, FaBolt, FaCode, FaBrain } from "react-icons/fa";
 import { useScreen } from "../../context/context";
 
-type IntroContainerProps = {
-  inlineMargin: string;
-};
+type IntroContainerProps = { inlineMargin: string };
 
 const IntroContainer = styled.section<IntroContainerProps>`
   position: relative;
   min-height: calc(100vh - 5.5rem);
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
+  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.72fr);
   align-items: center;
-  gap: clamp(2rem, 5vw, 6rem);
-  padding: clamp(3rem, 7vw, 6rem) clamp(1.1rem, 4vw, 3.5rem);
+  gap: clamp(3rem, 7vw, 7rem);
+  padding: clamp(4rem, 8vw, 7rem) clamp(1.1rem, 5vw, 4.5rem);
   margin-inline: ${(props) => props.inlineMargin};
   overflow: hidden;
 
   &::before {
     content: "";
     position: absolute;
-    width: 34rem;
-    height: 34rem;
-    right: -12rem;
-    top: 2rem;
+    width: 520px;
+    height: 520px;
+    right: -220px;
+    top: 10%;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(139, 92, 246, 0.24), transparent 68%);
-    filter: blur(8px);
-    animation: breathe 7s ease-in-out infinite;
-  }
-
-  @keyframes breathe {
-    0%, 100% { transform: scale(0.95); opacity: 0.7; }
-    50% { transform: scale(1.08); opacity: 1; }
+    background: radial-gradient(circle, rgba(56,189,248,0.08), transparent 68%);
+    pointer-events: none;
   }
 
   .eyebrow {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 0.55rem;
-    margin: 0 0 1.1rem;
-    color: var(--lime);
-    font: 700 0.72rem/1 var(--font-mono);
-    letter-spacing: 0.13em;
+    gap: 0.65rem;
+    margin: 0 0 1.4rem;
+    color: var(--accent);
+    font: 700 0.7rem/1 var(--font-mono);
+    letter-spacing: 0.14em;
     text-transform: uppercase;
   }
 
   .eyebrow::before {
     content: "";
-    width: 28px;
+    width: 34px;
     height: 1px;
-    background: var(--lime);
+    background: var(--accent);
   }
 
   h1 {
-    max-width: 850px;
+    max-width: 900px;
     margin: 0;
-    font-size: clamp(3.2rem, 7vw, 7.4rem);
-    line-height: 0.91;
+    font-size: clamp(3.5rem, 7.4vw, 7.2rem);
+    line-height: 0.9;
     letter-spacing: -0.075em;
     font-weight: 900;
   }
 
   h1 span {
-    display: block;
-    color: transparent;
-    background: linear-gradient(100deg, var(--cyan), var(--violet) 55%, var(--pink));
-    background-clip: text;
-    -webkit-background-clip: text;
+    color: var(--accent);
   }
 
   .subtitle {
-    max-width: 690px;
-    margin: 1.7rem 0 0;
+    max-width: 720px;
+    margin: 1.8rem 0 0;
     color: var(--muted);
-    font-size: clamp(1rem, 1.8vw, 1.2rem);
+    font-size: clamp(1rem, 1.7vw, 1.18rem);
+    line-height: 1.75;
   }
 
   .actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
+    gap: 0.7rem;
     margin-top: 2rem;
   }
 
   .actions a {
     display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
-    padding: 0.85rem 1.05rem;
-    border-radius: 999px;
+    gap: 0.55rem;
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
     text-decoration: none;
     font-weight: 800;
-    transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
   }
 
-  .actions a:hover {
-    transform: translateY(-3px);
+  .actions a:hover { transform: translateY(-2px); }
+
+  .primary {
+    background: var(--accent);
+    color: #04111b;
   }
 
-  .actions .primary {
-    background: var(--lime);
-    color: #071008;
-    box-shadow: 0 12px 35px rgba(184, 255, 106, 0.18);
-  }
-
-  .actions .secondary {
+  .secondary {
     border: 1px solid var(--line);
     color: var(--text);
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255,255,255,0.025);
   }
 
-  .micro-proof {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-    margin-top: 1.6rem;
+  .proof {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    gap: 0.55rem 1.4rem;
+    margin-top: 2rem;
+    color: #64748B;
+    font: 600 0.7rem/1 var(--font-mono);
   }
 
-  .micro-proof span {
-    padding: 0.38rem 0.65rem;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    color: #CBD5E1;
-    font: 600 0.72rem/1 var(--font-mono);
+  .proof span::before {
+    content: "•";
+    margin-right: 0.45rem;
+    color: var(--accent-2);
   }
 
   .visual {
-    position: relative;
-    min-height: 510px;
-    display: grid;
-    place-items: center;
-  }
-
-  .visual::before {
-    content: "";
-    position: absolute;
-    width: min(34vw, 430px);
-    height: min(34vw, 430px);
-    border: 1px solid rgba(34, 211, 238, 0.18);
-    border-radius: 50%;
-    animation: spin 22s linear infinite;
-  }
-
-  .visual::after {
-    content: "";
-    position: absolute;
-    width: min(25vw, 315px);
-    height: min(25vw, 315px);
-    border: 1px dashed rgba(139, 92, 246, 0.35);
-    border-radius: 50%;
-    animation: spinReverse 16s linear infinite;
-  }
-
-  @keyframes spin { to { transform: rotate(360deg); } }
-  @keyframes spinReverse { to { transform: rotate(-360deg); } }
-
-  .orb {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--lime);
-    box-shadow: 0 0 25px var(--lime);
-    animation: orbit 8s linear infinite;
-  }
-
-  @keyframes orbit {
-    from { transform: rotate(0deg) translateX(185px) rotate(0deg); }
-    to { transform: rotate(360deg) translateX(185px) rotate(-360deg); }
+    display: flex;
+    justify-content: center;
   }
 
   .console {
-    position: relative;
-    z-index: 2;
-    width: min(100%, 470px);
-    padding: 1rem;
-    border: 1px solid rgba(255,255,255,0.13);
-    border-radius: 24px;
-    background: rgba(8, 12, 24, 0.88);
-    box-shadow: 0 35px 80px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.06);
-    backdrop-filter: blur(18px);
-    transform: rotate(1deg);
-    transition: transform 250ms ease;
-  }
-
-  .console:hover {
-    transform: rotate(0deg) translateY(-8px);
+    width: min(100%, 430px);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: rgba(15,23,42,0.82);
+    box-shadow: 0 30px 70px rgba(0,0,0,0.28);
+    overflow: hidden;
   }
 
   .console-top {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.2rem 0.3rem 0.9rem;
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--line);
     color: #64748B;
-    font: 600 0.7rem/1 var(--font-mono);
+    font: 600 0.68rem/1 var(--font-mono);
   }
 
-  .dots {
-    display: flex;
-    gap: 0.35rem;
-  }
+  .dots { display: flex; gap: 0.35rem; }
+  .dots i { width: 7px; height: 7px; border-radius: 50%; background: #475569; }
 
-  .dots i {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #475569;
-  }
-
-  .status {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    color: var(--lime);
-  }
-
-  .status b {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--lime);
-    box-shadow: 0 0 10px var(--lime);
-    animation: pulse 1.5s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    50% { opacity: 0.35; transform: scale(0.7); }
-  }
+  .status { color: var(--accent-2); }
 
   .console-body {
-    padding: 1.2rem;
-    border-radius: 16px;
-    background: #080C16;
+    padding: 1.25rem;
+    background: #090F1A;
     font-family: var(--font-mono);
   }
 
-  .line {
+  .command {
+    padding: 0.9rem;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    color: var(--accent);
+    background: #0B1422;
+    font-size: 0.75rem;
+    overflow-wrap: anywhere;
+  }
+
+  .flow {
+    margin: 1.1rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .flow li {
     display: flex;
-    gap: 0.65rem;
-    margin: 0.7rem 0;
+    gap: 0.7rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid rgba(148,163,184,0.08);
     color: #CBD5E1;
-    font-size: 0.78rem;
+    font-size: 0.75rem;
   }
 
-  .line em {
-    color: var(--violet);
-    font-style: normal;
-  }
+  .flow li:last-child { border-bottom: 0; }
 
-  .line strong {
-    color: var(--cyan);
-  }
-
-  .line small {
+  .flow b {
     color: #64748B;
+    font-weight: 600;
   }
 
   .mode-switch {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 0.35rem;
-    margin-top: 1rem;
+    padding: 0.75rem;
+    background: #0F172A;
   }
 
   .mode-switch button {
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 0.55rem 0.4rem;
-    background: rgba(255,255,255,0.025);
-    color: #94A3B8;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 0.65rem 0.35rem;
+    background: transparent;
+    color: #64748B;
     cursor: pointer;
-    font: 700 0.7rem/1 var(--font-mono);
-    transition: all 160ms ease;
+    font: 700 0.68rem/1 var(--font-mono);
+    transition: color 160ms ease, border-color 160ms ease, background 160ms ease;
   }
 
-  .mode-switch button.active,
-  .mode-switch button:hover {
-    border-color: rgba(184,255,106,0.45);
-    background: rgba(184,255,106,0.08);
-    color: var(--lime);
+  .mode-switch button:hover,
+  .mode-switch button.active {
+    color: var(--accent);
+    border-color: rgba(56,189,248,0.25);
+    background: rgba(56,189,248,0.06);
   }
 
   .mode-copy {
-    min-height: 52px;
+    min-height: 58px;
     margin: 1rem 0 0;
-    color: #E2E8F0;
-    font-size: 0.86rem;
+    color: var(--muted);
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    line-height: 1.55;
   }
 
-  .scroll-cue {
-    position: absolute;
-    left: clamp(1.1rem, 4vw, 3.5rem);
-    bottom: 1.2rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: #64748B;
-    font: 600 0.68rem/1 var(--font-mono);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-  }
+  .mode-copy svg { margin-right: 0.45rem; color: var(--accent); }
 
-  .scroll-cue svg {
-    animation: bob 1.8s ease-in-out infinite;
-  }
-
-  @keyframes bob {
-    50% { transform: translateY(5px); }
-  }
-
-  @media (max-width: 950px) {
+  @media (max-width: 900px) {
     grid-template-columns: 1fr;
-    padding-top: 4rem;
-
-    .visual {
-      min-height: 420px;
-    }
+    min-height: auto;
+    gap: 3rem;
   }
 
   @media (max-width: 600px) {
-    min-height: auto;
-
-    h1 {
-      font-size: clamp(3rem, 16vw, 5rem);
-    }
-
-    .visual {
-      min-height: 370px;
-    }
-
-    .visual::before {
-      width: 310px;
-      height: 310px;
-    }
-
-    .visual::after {
-      width: 230px;
-      height: 230px;
-    }
-
-    .orb {
-      animation-name: orbitMobile;
-    }
-
-    @keyframes orbitMobile {
-      from { transform: rotate(0deg) translateX(135px) rotate(0deg); }
-      to { transform: rotate(360deg) translateX(135px) rotate(-360deg); }
-    }
-
-    .scroll-cue {
-      display: none;
-    }
+    h1 { font-size: clamp(3.2rem, 16vw, 5rem); }
+    .proof { grid-template-columns: 1fr; }
   }
 `;
 
@@ -386,57 +258,50 @@ const Introduction = () => {
   const ModeIcon = selected.icon;
 
   return (
-    <IntroContainer id="home" inlineMargin={inlineMargin} className="page-content">
+    <IntroContainer id="home" inlineMargin={inlineMargin}>
       <div>
         <p className="eyebrow">SOFTWARE ENGINEER · BUILDER · FREELANCE</p>
         <h1>Make it <span>work.</span><br />Make it last.</h1>
         <p className="subtitle">
-          I turn product ideas and messy technical problems into useful,
-          production-ready software — from interfaces and APIs to distributed
-          workflows.
+          I turn product ideas and difficult technical problems into useful,
+          production-ready software — from interfaces and APIs to distributed workflows.
         </p>
         <div className="actions">
           <a className="primary" href="#contact">Start a conversation <FaArrowRight size={13} /></a>
           <a className="secondary" href="#projects">Explore the work</a>
         </div>
-        <div className="micro-proof">
-          <span>5+ years</span>
+        <div className="proof">
+          <span>5+ years engineering</span>
           <span>Java + Spring</span>
-          <span>React + Next</span>
+          <span>React + Next.js</span>
           <span>Cloud + distributed systems</span>
         </div>
       </div>
 
-      <div className="visual" aria-label="Interactive engineering console">
-        <span className="orb" />
-        <div className="console">
+      <div className="visual">
+        <div className="console" aria-label="Interactive engineering console">
           <div className="console-top">
             <div className="dots"><i /><i /><i /></div>
-            <span className="status"><b /> SYSTEM READY</span>
+            <span className="status">ASHISH / ENGINEERING</span>
           </div>
           <div className="console-body">
-            <div className="line"><small>01</small><em>$</em><strong>{selected.command}</strong></div>
-            <div className="line"><small>02</small><span>→ mapping problem space</span></div>
-            <div className="line"><small>03</small><span>→ choosing the simplest useful architecture</span></div>
-            <div className="line"><small>04</small><span>→ <strong>shipping</strong> with feedback loops</span></div>
-            <p className="mode-copy"><ModeIcon size={13} /> {selected.copy}</p>
+            <div className="command">$ {selected.command}</div>
+            <ul className="flow">
+              <li><b>01</b><span>Understand the problem</span></li>
+              <li><b>02</b><span>Shape the simplest useful system</span></li>
+              <li><li><b>03</b><span>Ship, measure and improve</span></li></li>
+            </ul>
+            <p className="mode-copy"><ModeIcon size={13} />{selected.copy}</p>
           </div>
           <div className="mode-switch">
             {(Object.keys(modes) as Array<keyof typeof modes>).map((key) => (
-              <button
-                key={key}
-                className={mode === key ? "active" : ""}
-                onClick={() => setMode(key)}
-                type="button"
-              >
+              <button key={key} className={mode === key ? "active" : ""} onClick={() => setMode(key)} type="button">
                 {modes[key].label}
               </button>
             ))}
           </div>
         </div>
       </div>
-
-      <div className="scroll-cue"><FaArrowDown size={10} /> scroll to explore</div>
     </IntroContainer>
   );
 };
