@@ -469,6 +469,25 @@ const WorkPrinciples = styled.div`
   p { margin: 7px 0 0; color: #706a61; font-size: .72rem; line-height: 1.55; }
   @media (max-width: 650px) { grid-template-columns: 1fr; }
 `;
+const InsightGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  @media (max-width: 760px) { grid-template-columns: 1fr; }
+`;
+const InsightCard = styled.article`
+  min-height: 260px;
+  padding: 28px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+  &:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(49,40,28,.08); }
+  .label { color: var(--gold); font: 700 .62rem/1 "SFMono-Regular", Consolas, monospace; letter-spacing: .12em; }
+  h3 { margin: auto 0 10px; font-family: Georgia, serif; font-size: clamp(1.55rem, 2.6vw, 2.25rem); line-height: 1; font-weight: 500; letter-spacing: -.04em; }
+  p { margin: 0; color: var(--muted); line-height: 1.65; font-size: .82rem; }
+`;
 const Process = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -735,10 +754,10 @@ const Landing = (): ReactElement => (
             <div><Eyebrow>Insights</Eyebrow><h2>Engineering notes worth sharing.</h2></div>
             <p>Architecture, scaling, modernization, debugging and practical AI engineering.</p>
           </SectionHead>
-          <WorkGrid>
-            <WorkCard><span className="label">ARCHITECTURE</span><h3>Designing scalable systems without over-engineering.</h3><p>Patterns, trade-offs and lessons from APIs, distributed workflows and data-heavy applications.</p></WorkCard>
-            <WorkCard><span className="label">MODERNIZATION</span><h3>When to evolve a legacy system instead of rewriting it.</h3><p>A practical way to identify boundaries, reduce risk and modernize incrementally.</p></WorkCard>
-          </WorkGrid>
+          <InsightGrid>
+            <InsightCard><span className="label">ARCHITECTURE</span><h3>Designing scalable systems without over-engineering.</h3><p>Patterns, trade-offs and lessons from APIs, distributed workflows and data-heavy applications.</p></InsightCard>
+            <InsightCard><span className="label">MODERNIZATION</span><h3>When to evolve a legacy system instead of rewriting it.</h3><p>A practical way to identify boundaries, reduce risk and modernize incrementally.</p></InsightCard>
+          </InsightGrid>
         </C>
       </Section>
 
