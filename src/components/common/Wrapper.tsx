@@ -11,12 +11,6 @@ export const Wrapper = styled.section<WrapperProps>`
   color: var(--text);
   overflow: hidden;
   scroll-margin-top: 5.5rem;
-  animation: sectionIn 700ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
-
-  @keyframes sectionIn {
-    from { opacity: 0; transform: translateY(22px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
 
   &::after {
     content: "";
@@ -73,7 +67,4 @@ export const Wrapper = styled.section<WrapperProps>`
     font-weight: 750;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    animation: none;
-  }
 `;
