@@ -326,23 +326,92 @@ const SectionHead = styled.div`
 `;
 const WorkGrid = styled.div`
   display: grid;
-  grid-template-columns: 1.25fr .75fr;
-  gap: 16px;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 18px;
+  align-items: stretch;
   @media (max-width: 820px) { grid-template-columns: 1fr; }
 `;
 const WorkCard = styled.article`
-  min-height: 300px;
-  padding: 29px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
+  position: relative;
+  grid-column: span 4;
+  min-height: 360px;
+  padding: 28px;
+  border: 1px solid #d8d1c4;
+  border-radius: 2px;
   background: var(--surface);
   display: flex;
   flex-direction: column;
-  .label { color: var(--gold); font: 700 .62rem/1 "SFMono-Regular", Consolas, monospace; letter-spacing: .12em; }
-  h3 { margin: 55px 0 10px; font-family: Georgia, serif; font-size: clamp(1.75rem, 3vw, 2.55rem); font-weight: 500; letter-spacing: -.04em; }
-  p { margin: 0; color: var(--muted); max-width: 640px; line-height: 1.65; }
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 24px; }
-  .tag { padding: 6px 8px; border: 1px solid var(--line); color: #68655f; font-size: .62rem; border-radius: 999px; }
+  overflow: hidden;
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  &:first-child {
+    grid-column: span 8;
+    background: #efe5d3;
+  }
+  &:hover {
+    transform: translateY(-5px);
+    border-color: #bca889;
+    box-shadow: 0 22px 48px rgba(43,34,22,.09);
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 3px;
+    background: var(--gold);
+    transform: scaleX(.2);
+    transform-origin: left;
+    transition: transform 180ms ease;
+  }
+  &:hover:before { transform: scaleX(1); }
+  .topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+  }
+  .label { color: var(--gold-dark); font: 700 .62rem/1 "SFMono-Regular", Consolas, monospace; letter-spacing: .14em; }
+  .number { font-family: Georgia, serif; font-size: 1rem; color: #8c8273; }
+  h3 {
+    max-width: 680px;
+    margin: auto 0 12px;
+    font-family: Georgia, serif;
+    font-size: clamp(1.7rem, 3vw, 2.7rem);
+    line-height: .98;
+    font-weight: 500;
+    letter-spacing: -.045em;
+  }
+  p { margin: 0; color: #66635d; max-width: 660px; line-height: 1.65; font-size: .86rem; }
+  .card-footer {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 18px;
+    margin-top: 25px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(126,111,87,.25);
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    padding: 6px 8px;
+    border: 1px solid rgba(126,111,87,.3);
+    color: #68655f;
+    font-size: .6rem;
+    border-radius: 999px;
+    background: rgba(255,255,255,.28);
+  }
+  .arrow {
+    width: 34px; height: 34px; flex: 0 0 auto;
+    display: grid; place-items: center;
+    border: 1px solid rgba(126,111,87,.35);
+    border-radius: 50%;
+    color: var(--gold-dark);
+    background: rgba(255,255,255,.35);
+  }
+  @media (max-width: 820px) {
+    grid-column: span 1;
+    &:first-child { grid-column: span 1; }
+    min-height: 310px;
+  }
 `;
 const Process = styled.div`
   display: grid;
@@ -521,10 +590,16 @@ const Landing = (): ReactElement => (
           <WorkGrid>
             {projects.map(({ number, title, description, tags }) => (
               <WorkCard key={number}>
-                <span className="label">CASE STUDY / {number}</span>
+                <div className="topline">
+                  <span className="label">CASE STUDY</span>
+                  <span className="number">{number}</span>
+                </div>
                 <h3>{title}</h3>
                 <p>{description}</p>
-                <div className="tags">{tags.map(tag => <span className="tag" key={tag}>{tag}</span>)}</div>
+                <div className="card-footer">
+                  <div className="tags">{tags.map(tag => <span className="tag" key={tag}>{tag}</span>)}</div>
+                  <span className="arrow" aria-hidden="true"><FaArrowRight size={12} /></span>
+                </div>
               </WorkCard>
             ))}
           </WorkGrid>
