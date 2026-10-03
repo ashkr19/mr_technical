@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, MouseEvent } from "react";
 import styled from "styled-components";
 import { FaArrowRight, FaEnvelope, FaGithub, FaLinkedin, FaLocationDot } from "react-icons/fa6";
 import photo from "../assets/images/ash.png";
@@ -593,16 +593,29 @@ const aiUseCases: [string, string][] = [
   ["Product copilots", "Add context-aware assistance where it improves an existing workflow."]
 ];
 
+const scrollToSection = (event: MouseEvent<HTMLAnchorElement>, id: string) => {
+  event.preventDefault();
+  const section = document.getElementById(id);
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+};
+
 const Landing = (): ReactElement => (
   <Page>
     <Header>
       <C>
         <HeaderInner>
-          <Brand href="#home">Ashish Kumar<span>Software Engineer · Technical Consultant</span></Brand>
+          <Brand href="#home" onClick={(event) => scrollToSection(event, "home")}>Ashish Kumar<span>Software Engineer · Technical Consultant</span></Brand>
           <Nav>
-            <a href="#home">Home</a><a href="#work">Work</a><a href="#services">Services</a><a href="#approach">Approach</a><a href="#about">About</a><a href="#insights">Blog</a>
+            <a href="#home" onClick={(event) => scrollToSection(event, "home")}>Home</a>
+            <a href="#work" onClick={(event) => scrollToSection(event, "work")}>Work</a>
+            <a href="#services" onClick={(event) => scrollToSection(event, "services")}>Services</a>
+            <a href="#approach" onClick={(event) => scrollToSection(event, "approach")}>Approach</a>
+            <a href="#about" onClick={(event) => scrollToSection(event, "about")}>About</a>
+            <a href="#insights" onClick={(event) => scrollToSection(event, "insights")}>Blog</a>
           </Nav>
-          <HeaderCta href="#contact">Let's Talk <FaArrowRight size={11} /></HeaderCta>
+          <HeaderCta href="#contact" onClick={(event) => scrollToSection(event, "contact")}>Let's Talk <FaArrowRight size={11} /></HeaderCta>
         </HeaderInner>
       </C>
     </Header>
@@ -616,8 +629,8 @@ const Landing = (): ReactElement => (
               <H1>Modernize.<br />Scale.<br /><span>Build What Matters.</span></H1>
               <HeroCopy>I help companies build, scale, and modernize software — from architecture and technical consulting to hands-on delivery and practical AI engineering.</HeroCopy>
               <Actions>
-                <Primary href="#contact">Start a project <FaArrowRight size={12} /></Primary>
-                <Secondary href="#work">View my work</Secondary>
+                <Primary href="#contact" onClick={(event) => scrollToSection(event, "contact")}>Start a project <FaArrowRight size={12} /></Primary>
+                <Secondary href="#work" onClick={(event) => scrollToSection(event, "work")}>View my work</Secondary>
               </Actions>
               <Proof>
                 <ProofItem><strong>5+</strong><span>Years experience</span></ProofItem>
@@ -649,7 +662,7 @@ const Landing = (): ReactElement => (
                 <div className="icon">{glyph}</div>
                 <h3>{title}</h3>
                 <p>{description}</p>
-                <a href="#contact" aria-label={`Discuss ${title}`}><FaArrowRight size={12} /></a>
+                <a href="#contact" onClick={(event) => scrollToSection(event, "contact")} aria-label={`Discuss ${title}`}><FaArrowRight size={12} /></a>
               </Service>
             ))}
           </ServicesGrid>
@@ -720,7 +733,7 @@ const Landing = (): ReactElement => (
               <Eyebrow>AI engineering</Eyebrow>
               <h2>AI that earns its place.</h2>
               <p>I design AI-assisted capabilities around real data, workflows and measurable outcomes — not demos looking for a problem.</p>
-              <Actions><Primary href="#contact">Discuss an AI initiative <FaArrowRight size={12} /></Primary></Actions>
+              <Actions><Primary href="#contact" onClick={(event) => scrollToSection(event, "contact")}>Discuss an AI initiative <FaArrowRight size={12} /></Primary></Actions>
             </div>
             <AiGrid>{aiUseCases.map(([title, description]) => <AiItem key={title}><strong>{title}</strong><span>{description}</span></AiItem>)}</AiGrid>
           </div>
@@ -784,7 +797,7 @@ const Landing = (): ReactElement => (
     </main>
 
     <Footer>
-      <C><div className="inner"><span>© {new Date().getFullYear()} Ashish Kumar · Software Engineering & Technical Consulting.</span><a href="#home">Back to top ↑</a></div></C>
+      <C><div className="inner"><span>© {new Date().getFullYear()} Ashish Kumar · Software Engineering & Technical Consulting.</span><a href="#home" onClick={(event) => scrollToSection(event, "home")}>Back to top ↑</a></div></C>
     </Footer>
   </Page>
 );
