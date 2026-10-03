@@ -18,7 +18,7 @@ const NavBar = styled.aside<NavBarCSSProps>`
   overflow-y: scroll;
   left: 0;
   top: 0;
-  width: ${(navBarCssProps) => navBarCssProps.width};
+  width: ${(props) => props.width};
   transition: width 0.5s;
   z-index: 2;
 `;
@@ -54,16 +54,6 @@ const Name = styled.h2`
   margin: 0;
 `;
 
-// const NavLinks = styled.div`
-//   border-bottom: 1px solid white;
-//   height: 0.1rem;
-// `;
-
-// const NavLinkText = styled.h4`
-//   color: white;
-//   font-family: cursive;
-// `;
-
 const NameWrapper = styled.div`
   border-bottom: 1px solid white;
 `;
@@ -75,6 +65,7 @@ const SocialMediaIconWrapper = styled.div`
   height: 3rem;
   width: 3rem;
   border-bottom: 3px solid #2c2f3f;
+
   &:hover {
     border-bottom: 3px solid #00a6eb;
     cursor: pointer;
@@ -100,37 +91,27 @@ const SideNavigationBar = (): ReactElement => {
   };
 
   const getNavBarWidth = (
-    screenType: ScreenType,
-    isMenuButtonClicked: boolean,
-    isScrollingDown: boolean
+    currentScreen: ScreenType,
+    menuClicked: boolean,
+    scrollingDown: boolean
   ): string => {
-    switch (screenType) {
+    switch (currentScreen) {
       case "desktop":
-        if (isScrollingDown && !isMenuButtonClicked) {
-          return "300px";
-        } else if (!isMenuButtonClicked && !isScrollingDown) {
-          console.log("here--came desk");
-          return "100%";
-        }
+        if (scrollingDown && !menuClicked) return "300px";
+        if (!menuClicked && !scrollingDown) return "100%";
         break;
-
       case "mobile":
       case "tabs":
-        if (isScrollingDown && !isMenuButtonClicked) {
-          return "8px";
-        } else if (isMenuButtonClicked && !isScrollingDown) {
-          console.log("here--came mob/tab");
-          return "100%";
-        }
+        if (scrollingDown && !menuClicked) return "8px";
+        if (menuClicked && !scrollingDown) return "100%";
         break;
-
       default:
         return "100%";
     }
     return "100%";
   };
 
-  const handleEvent = (event: any) => {
+  const handleEvent = () => {
     if (!isScrollingDown) {
       handleMenuClick(false);
       setScrolling(true);
@@ -142,13 +123,13 @@ const SideNavigationBar = (): ReactElement => {
       id="side-nav"
       width={getNavBarWidth(screenType, isMenuButtonClicked, isScrollingDown)}
       left="0px"
-      onTouchMove={(event) => handleEvent(event)}
-      onMouseDown={(event) => handleEvent(event)}
-      onScroll={(event) => handleScroll(event)}
+      onTouchMove={handleEvent}
+      onMouseDown={handleEvent}
+      onScroll={handleScroll}
     >
       <NavBarContent>
         <ImageWrapper>
-          <Image src={photo} alt="Ashish Kumar" />
+          <Image src={photo} alt="Portrait of Ashish Kumar" />
         </ImageWrapper>
         <NameWrapper>
           <Name>Ashish Kumar</Name>
@@ -163,8 +144,10 @@ const SideNavigationBar = (): ReactElement => {
 const NavScreen = () => {
   const navList = [
     "Home",
-    "Skills",
-    "Services",
+    "What I Build",
+    "Selected Work",
+    "Engineering",
+    "Freelance",
     "About",
     "Contact",
   ];
@@ -172,22 +155,25 @@ const NavScreen = () => {
   return (
     <nav
       aria-label="Main navigation"
-      style={{ marginTop: "2rem", display: "flex", flexDirection: "column" , alignItems: "center"}}
+      style={{
+        marginTop: "2rem",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
     >
-      {navList.map((item, key) => {
-        return (
-          <UnderlinedText
-            key={item}
-            text={item}
-            tag={"a"}
-            color="white"
-            fontFamily="cursive"
-            underlinePosition={""}
-            margin="0.4rem"
-            fontSize="1.1rem"
-          />
-        );
-      })}
+      {navList.map((item) => (
+        <UnderlinedText
+          key={item}
+          text={item}
+          tag="a"
+          color="white"
+          fontFamily="cursive"
+          underlinePosition=""
+          margin="0.35rem"
+          fontSize="1rem"
+        />
+      ))}
     </nav>
   );
 };
@@ -206,9 +192,7 @@ const SocialMediaNavigations = () => {
       {socialMediaIconElements.map((icon) => {
         const [key, value] = icon.entries().next().value;
         return (
-          <SocialMediaIconWrapper key={key}>
-           {value}
-          </SocialMediaIconWrapper>
+          <SocialMediaIconWrapper key={key}>{value}</SocialMediaIconWrapper>
         );
       })}
     </div>
