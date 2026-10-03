@@ -289,7 +289,7 @@ const Introduction = () => {
             <ul className="flow">
               <li><b>01</b><span>Understand the problem</span></li>
               <li><b>02</b><span>Shape the simplest useful system</span></li>
-              <li><li><b>03</b><span>Ship, measure and improve</span></li></li>
+              <li><b>03</b><span>Ship, measure and improve</span></li>
             </ul>
             <p className="mode-copy"><ModeIcon size={13} />{selected.copy}</p>
           </div>
