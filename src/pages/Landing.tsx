@@ -21,7 +21,7 @@ const Page = styled.div`
 `;
 
 const C = styled.div`
-  width: min(1440px, calc(100% - 72px));
+  width: min(1440px, calc(100% - 64px));
   margin: 0 auto;
   @media (max-width: 900px) { width: min(100% - 40px, 720px); }
   @media (max-width: 560px) { width: calc(100% - 28px); }
@@ -36,7 +36,7 @@ const Header = styled.header`
   backdrop-filter: blur(16px);
 `;
 const HeaderInner = styled.div`
-  min-height: 82px;
+  min-height: 76px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -45,7 +45,7 @@ const HeaderInner = styled.div`
 const Brand = styled.a`
   text-decoration: none;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.55rem;
+  font-size: 1.42rem;
   letter-spacing: .01em;
   font-weight: 600;
   line-height: 1;
@@ -94,10 +94,10 @@ const Hero = styled.section`
   background:
     radial-gradient(circle at 72% 45%, rgba(255,255,255,.9), transparent 31%),
     linear-gradient(90deg, #faf7f0 0%, #faf7f0 51%, #eee5d6 100%);
-  padding: 52px 0 0;
+  padding: 42px 0 0;
 `;
 const HeroGrid = styled.div`
-  min-height: 660px;
+  min-height: 640px;
   display: grid;
   grid-template-columns: .96fr 1.04fr;
   align-items: stretch;
@@ -132,7 +132,7 @@ const H1 = styled.h1`
   max-width: 820px;
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(4rem, 7vw, 7.1rem);
+  font-size: clamp(3.9rem, 6.8vw, 6.7rem);
   line-height: .91;
   letter-spacing: -.065em;
   font-weight: 500;
@@ -184,7 +184,7 @@ const Secondary = styled.a`
 const HandNote = styled.div`
   position: absolute;
   right: 2%;
-  top: 125px;
+  top: 105px;
   max-width: 210px;
   color: #6d4e27;
   font: italic 1.45rem/1.1 "Brush Script MT", "Segoe Script", cursive;
@@ -246,7 +246,7 @@ const PortraitGlow = styled.div`
 const Portrait = styled.img`
   position: relative;
   z-index: 2;
-  width: min(700px, 100%);
+  width: min(680px, 100%);
   height: 100%;
   object-fit: contain;
   object-position: center bottom;
@@ -257,11 +257,11 @@ const StatCard = styled.aside`
   position: absolute;
   z-index: 4;
   right: 0;
-  top: 88px;
-  width: 190px;
-  padding: 23px 25px;
+  top: 72px;
+  width: 205px;
+  padding: 20px 22px;
   border: 1px solid rgba(181,168,146,.65);
-  border-radius: 14px;
+  border-radius: 11px;
   background: rgba(255,253,248,.9);
   box-shadow: 0 22px 50px rgba(50,39,22,.1);
   backdrop-filter: blur(10px);
@@ -293,8 +293,8 @@ const ServicesGrid = styled.div`
   @media (max-width: 460px) { grid-template-columns: 1fr; }
 `;
 const Service = styled.article`
-  min-height: 190px;
-  padding: 23px 20px;
+  min-height: 182px;
+  padding: 21px 18px;
   border: 1px solid #e0dbd1;
   border-radius: 14px;
   background: rgba(255,253,248,.72);
@@ -305,8 +305,8 @@ const Service = styled.article`
     border-radius: 11px; background: var(--gold-soft); color: var(--gold-dark);
     font-family: Georgia, serif; font-size: 1.2rem;
   }
-  h3 { margin: 22px 0 9px; font-family: Georgia, serif; font-size: 1.25rem; font-weight: 500; line-height: 1.05; }
-  p { margin: 0; color: var(--muted); font-size: .78rem; line-height: 1.6; }
+  h3 { margin: 22px 0 9px; font-family: Georgia, serif; font-size: 1.18rem; font-weight: 500; line-height: 1.05; }
+  p { margin: 0; color: var(--muted); font-size: .75rem; line-height: 1.55; }
   a { display: inline-flex; margin-top: 16px; color: var(--gold-dark); text-decoration: none; }
 `;
 
