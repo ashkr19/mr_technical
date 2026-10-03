@@ -1,46 +1,66 @@
+import styled from "styled-components";
 import { useScreen } from "../../context/context";
 import { Wrapper } from "../common/Wrapper";
 import pho from "../../assets/images/ash.jpeg";
-export const AboutMe = () => {
-    const screenType = useScreen();
-    const inlineMargin = screenType === "desktop" ? "1.2rem" : "0";
-    return (
-      <Wrapper id="about" inlineMargin={inlineMargin}>
-        <header>
-          <h2 className="page-title">About me</h2>
-          <div className="hr pb0" />
-        </header>
+
+const AboutLayout = styled.div`
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  margin-top: 1.2rem;
+
+  @media (max-width: 650px) {
+    flex-direction: column-reverse;
+  }
+`;
+
+const AboutImage = styled.img`
+  width: 9rem;
+  height: 9rem;
+  flex: 0 0 9rem;
+  border-radius: 50%;
+  object-fit: cover;
+`;
+
+const AboutMe = () => {
+  const screenType = useScreen();
+  const inlineMargin = screenType === "desktop" ? "1.2rem" : "0";
+
+  return (
+    <Wrapper id="about" inlineMargin={inlineMargin}>
+      <header>
+        <h2 className="page-title">About Ashish</h2>
+        <div className="hr pb0" />
+      </header>
+      <AboutLayout>
         <div>
-          <img
-            style={{
-              width: "8rem",
-              height: "8rem",
-              borderRadius: "50%",
-              float: "right",
-            }}
-            src={pho}
-            alt="Portrait of Ashish Kumar"
-          />
-          <p
-            style={{
-              fontFamily: "Noto Sans, Helvetica, Arial, sans-serif",
-              lineHeight: 1.4,
-              fontSize: "1.1rem",
-              fontWeight: 400,
-              padding: 10,
-              color: "rgb(51, 51, 51)",
-            }}
-          >
-            <strong>Ashish</strong> works in Software Industries, He is a
-            self-motivated person and keeps lots of interest in many different IT
-            Domains. He describes himself as a <strong>curious learner</strong>,{" "}
-            <strong>Multipotentialite</strong> and a <strong>nerdy geek</strong>.
-            Hobbies and Passions? <strong>Leadership</strong>,{" "}
-            <strong>Software Engineering</strong>, <strong>Cyber Security</strong>{" "}
-            and <strong>Science</strong>. Other things? Amateur (frustrated) cook.
+          <p>
+            I’m a Senior Software Engineer and Full Stack Developer with 5+
+            years of experience building production applications across
+            Insurance, E-commerce and EdTech.
+          </p>
+          <p>
+            My primary engineering stack is Java, Spring Boot, React and
+            Node.js, with experience designing REST APIs, microservices,
+            data-driven applications, asynchronous workflows, caching and
+            cloud-based systems.
+          </p>
+          <p>
+            I enjoy problems where software needs to be more than functional:
+            it should be reliable, observable, maintainable and ready for
+            production.
+          </p>
+          <p>
+            I’m also interested in AI-powered applications, system design,
+            distributed systems and practical technical problem solving. I
+            work with businesses and individuals who need help turning an
+            idea, workflow or technical problem into working software.
           </p>
         </div>
-      </Wrapper>
-    );
-  };
-  
+        <AboutImage src={pho} alt="Portrait of Ashish Kumar" />
+      </AboutLayout>
+    </Wrapper>
+  );
+};
+
+export default AboutMe;

@@ -1,81 +1,67 @@
 import styled from "styled-components";
 import { useScreen } from "../../context/context";
 import { Wrapper } from "../common/Wrapper";
-import { serviceImages, services } from "../../common/icons";
-const ServicesWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 4rem;
-  justify-content: space-evenly;
-  gap: 3rem;
-`;
-interface ServiceItemProps {
-  backgroundUrl?: string;
-}
 
-const ServiceItem = styled.div<ServiceItemProps>`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0.5rem;
-  width: 15rem;
-  height: 12rem;
-  background-color: rgb(242, 243, 247);
-  margin-top: 1rem;
-  position: relative;
-  border-radius: 5%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+const ServicesGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
 
-  &::before {
-    content: "";
-    position: absolute;
-    width: 5rem;
-    height: 5rem;
-    background: #f2f3f7;
-    top: 0%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(135deg);
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  &::after {
-    content: "";
-    position: absolute;
-    width: 3.5rem;
-    height: 3.5rem;
-    background: url(${(props) => props.backgroundUrl || ""}) no-repeat center
-      center/cover;
-    top: 0%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
   }
 `;
 
+const ServiceCard = styled.article`
+  padding: 1.25rem;
+  min-height: 150px;
+  border-radius: 12px;
+  background: #f7f8fa;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+
+  h3 {
+    margin: 0 0 0.6rem;
+    font-size: 1.15rem;
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.55;
+  }
+`;
+
+const services = [
+  ["Custom Web Applications", "Build responsive, maintainable applications with React, Next.js and production-ready backend APIs."],
+  ["AI-Powered Applications", "Add AI-assisted workflows to software products where they create a practical user or business benefit."],
+  ["Backend & APIs", "Design and implement Java/Spring Boot or Node.js APIs, integrations and business workflows."],
+  ["Microservices & Distributed Systems", "Build service-oriented workflows using clear boundaries, Kafka messaging, caching and reliable data access."],
+  ["Performance & Reliability", "Investigate slow APIs, application bottlenecks and production issues and turn findings into engineering improvements."],
+  ["Technical Consulting", "Help turn a software idea, technical problem or modernization requirement into an actionable engineering plan."],
+];
 
 export const Services = () => {
-    const screenType = useScreen();
-    const inlineMargin = screenType === "desktop" ? "1.2rem" : "0";
-    // const num_of_services = Array.from({ length: 3 });
-    return (
-      <Wrapper id="services" inlineMargin={inlineMargin}>
-        <header>
-          <h2 className="page-title">Services</h2>
-          <div className="hr pb0" />
-        </header>
-        <ServicesWrapper>
-          {serviceImages.map((imageURL, index) => {
-            return (
-              <ServiceItem key={index} backgroundUrl={imageURL}>
-                <h3 style={{ marginBottom: "0.5rem" }}>
-                  {services[index].keys().next().value}
-                </h3>
-                <p style={{ marginTop: 0, marginBottom: 0 }}>
-                  {services[index].values().next().value}
-                </p>
-              </ServiceItem>
-            );
-          })}
-        </ServicesWrapper>
-      </Wrapper>
-    );
-  };
+  const screenType = useScreen();
+  const inlineMargin = screenType === "desktop" ? "1.2rem" : "0";
+
+  return (
+    <Wrapper id="services" inlineMargin={inlineMargin}>
+      <header>
+        <h2 className="page-title">What I Build</h2>
+        <div className="hr pb0" />
+      </header>
+      <ServicesGrid>
+        {services.map(([title, description]) => (
+          <ServiceCard key={title}>
+            <h3>{title}</h3>
+            <p>{description}</p>
+          </ServiceCard>
+        ))}
+      </ServicesGrid>
+    </Wrapper>
+  );
+};
