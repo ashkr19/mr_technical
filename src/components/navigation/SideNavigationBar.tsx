@@ -14,29 +14,40 @@ type NavBarCSSProps = {
 const NavBar = styled.aside<NavBarCSSProps>`
   position: fixed;
   height: 100vh;
-  background-color: black;
-  overflow-y: scroll;
+  background: rgba(5, 7, 13, 0.86);
+  border-right: 1px solid rgba(148,163,184,0.1);
+  backdrop-filter: blur(18px);
+  overflow-y: auto;
   left: 0;
   top: 0;
   width: ${(props) => props.width};
-  transition: width 0.5s;
-  z-index: 2;
+  transition: width 0.5s, background 0.3s;
+  z-index: 20;
+  box-shadow: 18px 0 60px rgba(0,0,0,0.18);
 `;
 
 const NavBarContent = styled.div`
   display: flex;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  padding: 2rem 1.2rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 
 const ImageWrapper = styled.div`
-  background-color: #2c2f3f;
-  width: 8rem;
-  height: 8rem;
+  position: relative;
+  width: 5.5rem;
+  height: 5.5rem;
+  padding: 3px;
   border-radius: 50%;
+  background: conic-gradient(var(--lime), var(--cyan), var(--violet), var(--lime));
+  animation: rotateBorder 8s linear infinite;
+
+  @keyframes rotateBorder {
+    to { transform: rotate(360deg); }
+  }
 `;
 
 const Image = styled.img`
@@ -44,31 +55,81 @@ const Image = styled.img`
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
+  border: 3px solid #070A12;
 `;
 
 const Name = styled.h2`
-  color: white;
-  font-family: cursive;
-  font-size: 1.9rem;
-  padding: 0.5rem;
-  margin: 0;
+  margin: 0.9rem 0 0.2rem;
+  color: var(--text);
+  font-size: 1.15rem;
+  font-weight: 850;
+  letter-spacing: -0.04em;
+`;
+
+const Role = styled.span`
+  color: var(--lime);
+  font: 600 0.6rem/1 var(--font-mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 `;
 
 const NameWrapper = styled.div`
-  border-bottom: 1px solid white;
+  text-align: center;
 `;
 
-const SocialMediaIconWrapper = styled.div`
+const NavList = styled.nav`
   display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 3rem;
-  width: 3rem;
-  border-bottom: 3px solid #2c2f3f;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  max-width: 220px;
+  margin-top: 2.2rem;
+`;
+
+const NavItem = styled.div`
+  border-radius: 10px;
+  transition: background 160ms ease, transform 160ms ease;
 
   &:hover {
-    border-bottom: 3px solid #00a6eb;
-    cursor: pointer;
+    background: rgba(255,255,255,0.045);
+    transform: translateX(3px);
+  }
+
+  a {
+    display: block;
+    width: 100%;
+    padding: 0.55rem 0.7rem;
+    text-decoration: none;
+    color: #94A3B8;
+    font-size: 0.82rem;
+    font-weight: 700;
+  }
+
+  &:hover a {
+    color: var(--text);
+  }
+`;
+
+const Socials = styled.div`
+  display: flex;
+  gap: 0.35rem;
+  margin-top: 2.2rem;
+`;
+
+const Social = styled.div`
+  display: grid;
+  place-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: #94A3B8;
+  transition: all 180ms ease;
+
+  &:hover {
+    color: var(--lime);
+    border-color: rgba(184,255,106,0.45);
+    transform: translateY(-3px);
   }
 `;
 
@@ -133,6 +194,7 @@ const SideNavigationBar = (): ReactElement => {
         </ImageWrapper>
         <NameWrapper>
           <Name>Ashish Kumar</Name>
+          <Role>software engineer / builder</Role>
         </NameWrapper>
         <NavScreen />
         <SocialMediaNavigations />
@@ -144,38 +206,31 @@ const SideNavigationBar = (): ReactElement => {
 const NavScreen = () => {
   const navList = [
     ["Home", "home"],
-    ["What I Build", "services"],
-    ["Selected Work", "projects"],
+    ["Build", "services"],
+    ["Work", "projects"],
     ["Engineering", "engineering"],
-    ["Freelance", "freelance"],
+    ["Collaborate", "freelance"],
     ["About", "about"],
     ["Contact", "contact"],
   ];
 
   return (
-    <nav
-      aria-label="Main navigation"
-      style={{
-        marginTop: "2rem",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
+    <NavList aria-label="Main navigation">
       {navList.map(([label, targetId]) => (
-        <UnderlinedText
-          key={label}
-          text={label}
-          targetId={targetId}
-          tag="a"
-          color="white"
-          fontFamily="cursive"
-          underlinePosition=""
-          margin="0.35rem"
-          fontSize="1rem"
-        />
+        <NavItem key={label}>
+          <UnderlinedText
+            text={label}
+            targetId={targetId}
+            tag="a"
+            color="#94A3B8"
+            fontFamily="var(--font-sans)"
+            underlinePosition="0.25rem"
+            margin="0"
+            fontSize="0.82rem"
+          />
+        </NavItem>
       ))}
-    </nav>
+    </NavList>
   );
 };
 
@@ -183,19 +238,11 @@ export default SideNavigationBar;
 
 const SocialMediaNavigations = () => {
   return (
-    <div
-      style={{
-        display: "flex",
-        position: "relative",
-        bottom: "-2rem",
-      }}
-    >
+    <Socials>
       {socialMediaIconElements.map((icon) => {
         const [key, value] = icon.entries().next().value;
-        return (
-          <SocialMediaIconWrapper key={key}>{value}</SocialMediaIconWrapper>
-        );
+        return <Social key={key}>{value}</Social>;
       })}
-    </div>
+    </Socials>
   );
 };
