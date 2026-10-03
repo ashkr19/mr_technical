@@ -1,87 +1,629 @@
 import { ReactElement } from "react";
 import styled from "styled-components";
-import { FaArrowRight, FaQuoteLeft, FaEnvelope, FaGithub, FaLinkedin, FaLocationDot } from "react-icons/fa6";
+import { FaArrowRight, FaEnvelope, FaGithub, FaLinkedin, FaLocationDot } from "react-icons/fa6";
 import photo from "../assets/images/ash.jpeg";
 
 const Page = styled.div`
-  --bg: #f6f1e8; --surface: #fffdf8; --ink: #182033; --muted: #6c6b69;
-  --line: #ded8cb; --gold: #a2773b; --gold-soft: #eee3cf;
-  min-height: 100vh; background: var(--bg); color: var(--ink);
+  --bg: #f7f3eb;
+  --surface: #fffdf8;
+  --ink: #142033;
+  --muted: #62666d;
+  --line: #ded8cc;
+  --gold: #956b2f;
+  --gold-dark: #76521f;
+  --gold-soft: #f0e6d3;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
   font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  * { box-sizing: border-box; } a { color: inherit; }
+  * { box-sizing: border-box; }
+  a { color: inherit; }
 `;
-const C = styled.div`width:min(1180px,calc(100% - 48px));margin:0 auto;@media(max-width:700px){width:calc(100% - 32px);}`;
-const Header=styled.header`position:sticky;top:0;z-index:20;background:rgba(246,241,232,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(14px);`;
-const HeaderInner=styled.div`min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px;`;
-const Brand=styled.a`text-decoration:none;font-size:.9rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;span{display:block;margin-top:2px;color:var(--muted);font-size:.56rem;font-weight:600;letter-spacing:.14em;}`;
-const Nav=styled.nav`display:flex;gap:28px;font-size:.76rem;font-weight:700;a{text-decoration:none;color:#565a62;&:hover{color:var(--ink);}}@media(max-width:760px){display:none;}`;
-const HeaderCta=styled.a`display:inline-flex;align-items:center;gap:8px;padding:11px 16px;background:var(--ink);color:#fff!important;border-radius:6px;text-decoration:none;font-size:.74rem;font-weight:800;`;
-const Hero=styled.section`padding:94px 0 84px;border-bottom:1px solid var(--line);@media(max-width:760px){padding:64px 0;}`;
-const HeroGrid=styled.div`display:grid;grid-template-columns:1.08fr .92fr;gap:70px;align-items:center;@media(max-width:850px){grid-template-columns:1fr;gap:46px;}`;
-const Eyebrow=styled.p`margin:0 0 18px;color:var(--gold);font:700 .66rem/1 "SFMono-Regular",Consolas,monospace;letter-spacing:.18em;text-transform:uppercase;`;
-const H1=styled.h1`max-width:720px;margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(3.6rem,7.2vw,6.8rem);line-height:.92;letter-spacing:-.065em;font-weight:500;span{color:var(--gold);font-style:italic;}@media(max-width:500px){font-size:3.5rem;}`;
-const HeroCopy=styled.p`max-width:630px;margin:28px 0 0;color:#5e6064;font-size:clamp(1rem,1.7vw,1.16rem);line-height:1.7;`;
-const Actions=styled.div`display:flex;flex-wrap:wrap;gap:12px;margin-top:30px;`;
-const Primary=styled.a`display:inline-flex;align-items:center;gap:9px;padding:14px 18px;border-radius:6px;background:var(--gold);color:#fff;text-decoration:none;font-size:.78rem;font-weight:800;svg{transition:transform 160ms ease;}&:hover svg{transform:translateX(3px);}`;
-const Secondary=styled.a`display:inline-flex;align-items:center;gap:8px;padding:13px 17px;border:1px solid #bcb4a6;border-radius:6px;text-decoration:none;font-size:.78rem;font-weight:800;&:hover{background:#fffaf0;}`;
-const Proof=styled.div`display:grid;grid-template-columns:repeat(4,1fr);margin-top:58px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);@media(max-width:620px){grid-template-columns:repeat(2,1fr);}`;
-const ProofItem=styled.div`padding:18px 14px;border-right:1px solid var(--line);&:last-child{border-right:0;}strong{display:block;font-family:Georgia,serif;font-size:1.45rem;font-weight:500;}span{display:block;margin-top:4px;color:var(--muted);font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;}`;
-const PortraitPanel=styled.div`position:relative;min-height:530px;overflow:hidden;background:#e9e0d1;border:1px solid #d3c8b6;@media(max-width:850px){min-height:440px;max-width:560px;}`;
-const Portrait=styled.img`position:absolute;right:0;bottom:0;width:76%;height:92%;object-fit:cover;object-position:center top;mix-blend-mode:multiply;filter:contrast(.98) saturate(.7);`;
-const PortraitNote=styled.div`position:absolute;left:24px;top:24px;width:150px;padding:14px;border:1px solid #c7b99f;background:rgba(255,253,248,.8);color:#695c4a;font:700 .65rem/1.5 "SFMono-Regular",Consolas,monospace;text-transform:uppercase;letter-spacing:.08em;`;
-const Section=styled.section`padding:100px 0;border-bottom:1px solid var(--line);@media(max-width:760px){padding:72px 0;}`;
-const SectionHead=styled.div`display:grid;grid-template-columns:1fr 1fr;gap:50px;margin-bottom:42px;@media(max-width:760px){grid-template-columns:1fr;gap:14px;}h2{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(2.3rem,5vw,4.2rem);line-height:.98;font-weight:500;letter-spacing:-.045em;}p{margin:0;max-width:520px;color:var(--muted);line-height:1.75;}`;
-const ServicesGrid=styled.div`display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line);@media(max-width:820px){grid-template-columns:repeat(2,1fr);}@media(max-width:560px){grid-template-columns:1fr;}`;
-const Service=styled.article`min-height:245px;padding:26px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(255,253,248,.42);transition:background 180ms ease,transform 180ms ease;&:hover{background:var(--surface);transform:translateY(-2px);}.number{color:var(--gold);font:700 .62rem/1 "SFMono-Regular",Consolas,monospace;}h3{margin:52px 0 9px;font-family:Georgia,serif;font-size:1.55rem;font-weight:500;}p{margin:0;color:var(--muted);font-size:.9rem;line-height:1.65;}a{display:inline-flex;align-items:center;gap:7px;margin-top:22px;color:var(--gold);text-decoration:none;font-size:.72rem;font-weight:800;}`;
-const WorkGrid=styled.div`display:grid;grid-template-columns:1.25fr .75fr;gap:18px;@media(max-width:820px){grid-template-columns:1fr;}`;
-const WorkCard=styled.article`min-height:290px;padding:28px;border:1px solid var(--line);background:var(--surface);display:flex;flex-direction:column;.label{color:var(--gold);font:700 .62rem/1 "SFMono-Regular",Consolas,monospace;letter-spacing:.12em;}h3{margin:58px 0 10px;font-family:Georgia,serif;font-size:clamp(1.7rem,3vw,2.5rem);font-weight:500;letter-spacing:-.04em;}p{margin:0;color:var(--muted);max-width:620px;line-height:1.65;}.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:24px;}.tag{padding:6px 8px;border:1px solid var(--line);color:#68655f;font-size:.62rem;}`;
-const Process=styled.div`display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);@media(max-width:760px){grid-template-columns:repeat(2,1fr);}@media(max-width:480px){grid-template-columns:1fr;}`;
-const Step=styled.article`padding:25px 22px 30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);.step{color:var(--gold);font:700 .65rem/1 "SFMono-Regular",Consolas,monospace;}h3{margin:46px 0 8px;font-family:Georgia,serif;font-size:1.45rem;font-weight:500;}p{margin:0;color:var(--muted);font-size:.88rem;line-height:1.65;}`;
-const DarkBand=styled.section`background:#182033;color:#f7f2e9;padding:92px 0;.inner{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;align-items:center;}h2{margin:0;max-width:500px;font-family:Georgia,serif;font-size:clamp(2.4rem,5vw,4.4rem);line-height:.98;font-weight:500;}p{color:#b9bcc3;line-height:1.75;}@media(max-width:820px){.inner{grid-template-columns:1fr;gap:34px;}}`;
-const AiGrid=styled.div`display:grid;grid-template-columns:repeat(2,1fr);border:1px solid rgba(255,255,255,.13);@media(max-width:560px){grid-template-columns:1fr;}`;
-const AiItem=styled.div`padding:22px;min-height:120px;border-right:1px solid rgba(255,255,255,.13);border-bottom:1px solid rgba(255,255,255,.13);&:nth-child(2n){border-right:0;}strong{display:block;margin-bottom:7px;color:#f4d9aa;font-family:Georgia,serif;font-size:1.15rem;font-weight:500;}span{color:#aeb3bc;font-size:.82rem;line-height:1.55;}`;
-const AboutGrid=styled.div`display:grid;grid-template-columns:.75fr 1.25fr;gap:72px;align-items:start;@media(max-width:800px){grid-template-columns:1fr;gap:35px;}img{width:100%;max-width:330px;aspect-ratio:4/5;object-fit:cover;filter:saturate(.65);border:1px solid #d4cab9;}.lead{margin:0;max-width:760px;font-family:Georgia,serif;font-size:clamp(1.7rem,3vw,2.8rem);line-height:1.12;font-weight:500;letter-spacing:-.035em;}.copy{margin-top:22px;max-width:690px;color:var(--muted);line-height:1.8;}`;
-const Principles=styled.div`display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:32px;border:1px solid var(--line);background:var(--line);@media(max-width:650px){grid-template-columns:1fr;}div{padding:18px;background:var(--surface);}strong{display:block;font-family:Georgia,serif;font-size:1.05rem;font-weight:500;}span{display:block;margin-top:6px;color:var(--muted);font-size:.72rem;line-height:1.5;}`;
-const QuoteGrid=styled.div`display:grid;grid-template-columns:repeat(3,1fr);gap:16px;@media(max-width:820px){grid-template-columns:1fr;}`;
-const Quote=styled.blockquote`margin:0;padding:24px;border:1px solid var(--line);background:var(--surface);p{margin:18px 0 26px;color:#5f6062;font-family:Georgia,serif;font-size:1.05rem;line-height:1.6;}cite{color:var(--muted);font-size:.68rem;font-style:normal;font-weight:800;text-transform:uppercase;letter-spacing:.08em;}svg{color:var(--gold);}`;
-const ContactBand=styled.section`padding:90px 0;background:#e9dfce;.inner{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end;}h2{max-width:750px;margin:0;font-family:Georgia,serif;font-size:clamp(2.8rem,6vw,5.2rem);line-height:.94;font-weight:500;letter-spacing:-.05em;}p{max-width:650px;margin:18px 0 0;color:#68645d;line-height:1.7;}.contact-links{display:grid;gap:11px;}.contact-links a,.contact-links span{display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:#494740;font-size:.75rem;font-weight:800;}@media(max-width:760px){.inner{grid-template-columns:1fr;}}`;
-const Footer=styled.footer`padding:28px 0;background:#182033;color:#aeb3bc;font-size:.7rem;.inner{display:flex;justify-content:space-between;gap:20px;}a{color:#e6d6b7;text-decoration:none;}@media(max-width:620px){.inner{flex-direction:column;}}`;
+
+const C = styled.div`
+  width: min(1440px, calc(100% - 72px));
+  margin: 0 auto;
+  @media (max-width: 900px) { width: min(100% - 40px, 720px); }
+  @media (max-width: 560px) { width: calc(100% - 28px); }
+`;
+
+const Header = styled.header`
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(247,243,235,.94);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(16px);
+`;
+const HeaderInner = styled.div`
+  min-height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+`;
+const Brand = styled.a`
+  text-decoration: none;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.55rem;
+  letter-spacing: .01em;
+  font-weight: 600;
+  line-height: 1;
+  span {
+    display: block;
+    margin-top: 7px;
+    color: #58606a;
+    font-family: Inter, sans-serif;
+    font-size: .68rem;
+    font-weight: 500;
+    letter-spacing: .02em;
+  }
+`;
+const Nav = styled.nav`
+  display: flex;
+  align-items: center;
+  gap: 34px;
+  font-size: .82rem;
+  a {
+    text-decoration: none;
+    color: #313945;
+    padding: 30px 0 27px;
+    border-bottom: 2px solid transparent;
+    &:hover { color: var(--gold-dark); border-bottom-color: var(--gold); }
+  }
+  @media (max-width: 900px) { display: none; }
+`;
+const HeaderCta = styled.a`
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 20px;
+  background: var(--gold-dark);
+  color: #fff !important;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: .8rem;
+  font-weight: 700;
+  box-shadow: 0 8px 20px rgba(118,82,31,.14);
+`;
+
+const Hero = styled.section`
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 72% 45%, rgba(255,255,255,.9), transparent 31%),
+    linear-gradient(90deg, #faf7f0 0%, #faf7f0 51%, #eee5d6 100%);
+  padding: 52px 0 0;
+`;
+const HeroGrid = styled.div`
+  min-height: 660px;
+  display: grid;
+  grid-template-columns: .96fr 1.04fr;
+  align-items: stretch;
+  gap: 10px;
+  @media (max-width: 1000px) { grid-template-columns: 1fr; min-height: auto; }
+`;
+const HeroContent = styled.div`
+  position: relative;
+  z-index: 2;
+  padding: 38px 0 56px;
+  @media (max-width: 1000px) { padding-bottom: 35px; }
+`;
+const Eyebrow = styled.p`
+  margin: 0 0 22px;
+  color: var(--gold-dark);
+  font: 700 .7rem/1 "SFMono-Regular", Consolas, monospace;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+`;
+const EyebrowLine = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  &:before {
+    content: "";
+    width: 34px;
+    height: 2px;
+    background: var(--gold);
+  }
+`;
+const H1 = styled.h1`
+  max-width: 820px;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(4rem, 7vw, 7.1rem);
+  line-height: .91;
+  letter-spacing: -.065em;
+  font-weight: 500;
+  span { color: var(--gold-dark); font-style: italic; }
+  @media (max-width: 560px) { font-size: 3.65rem; }
+`;
+const HeroCopy = styled.p`
+  max-width: 660px;
+  margin: 27px 0 0;
+  color: #424852;
+  font-size: clamp(1rem, 1.45vw, 1.18rem);
+  line-height: 1.7;
+`;
+const Actions = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 13px;
+  margin-top: 29px;
+`;
+const Primary = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 22px;
+  border-radius: 8px;
+  background: var(--gold-dark);
+  color: #fff !important;
+  text-decoration: none;
+  font-size: .8rem;
+  font-weight: 800;
+  svg { transition: transform 160ms ease; }
+  &:hover svg { transform: translateX(4px); }
+`;
+const Secondary = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 14px 21px;
+  border: 1px solid #9d8d75;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: .8rem;
+  font-weight: 800;
+  background: rgba(255,253,248,.45);
+  &:hover { background: var(--surface); }
+`;
+const HandNote = styled.div`
+  position: absolute;
+  right: 2%;
+  top: 125px;
+  max-width: 210px;
+  color: #6d4e27;
+  font: italic 1.45rem/1.1 "Brush Script MT", "Segoe Script", cursive;
+  transform: rotate(-7deg);
+  text-align: center;
+  @media (max-width: 1000px) { display: none; }
+`;
+const Proof = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 620px;
+  margin-top: 52px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  @media (max-width: 560px) { grid-template-columns: 1fr; }
+`;
+const ProofItem = styled.div`
+  padding: 17px 18px;
+  border-right: 1px solid var(--line);
+  &:last-child { border-right: 0; }
+  strong {
+    display: block;
+    font-family: Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+  span {
+    display: block;
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: .67rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+  }
+  @media (max-width: 560px) { border-right: 0; border-bottom: 1px solid var(--line); &:last-child { border-bottom: 0; } }
+`;
+
+const PortraitStage = styled.div`
+  position: relative;
+  min-height: 660px;
+  align-self: end;
+  display: flex;
+  justify-content: flex-end;
+  overflow: visible;
+  @media (max-width: 1000px) { min-height: 560px; }
+  @media (max-width: 560px) { min-height: 430px; }
+`;
+const PortraitGlow = styled.div`
+  position: absolute;
+  width: 580px;
+  height: 580px;
+  border-radius: 50%;
+  background: rgba(226,210,184,.5);
+  left: 0;
+  bottom: 40px;
+  @media (max-width: 560px) { width: 390px; height: 390px; left: 50%; transform: translateX(-50%); }
+`;
+const Portrait = styled.img`
+  position: relative;
+  z-index: 2;
+  width: min(700px, 100%);
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: saturate(.94) contrast(1.01);
+  @media (max-width: 1000px) { width: min(650px, 100%); margin: 0 auto; }
+`;
+const StatCard = styled.aside`
+  position: absolute;
+  z-index: 4;
+  right: 0;
+  top: 88px;
+  width: 190px;
+  padding: 23px 25px;
+  border: 1px solid rgba(181,168,146,.65);
+  border-radius: 14px;
+  background: rgba(255,253,248,.9);
+  box-shadow: 0 22px 50px rgba(50,39,22,.1);
+  backdrop-filter: blur(10px);
+  @media (max-width: 1000px) { right: 5%; top: 35px; }
+  @media (max-width: 560px) { right: 2px; width: 150px; padding: 17px; }
+`;
+const Stat = styled.div`
+  padding: 13px 0;
+  border-bottom: 1px solid #d8d0c3;
+  &:last-child { border-bottom: 0; }
+  strong { display: block; font-family: Georgia, serif; font-size: 1.75rem; font-weight: 500; }
+  span { display: block; margin-top: 3px; color: #4d5259; font-size: .72rem; line-height: 1.35; }
+`;
+
+const ServiceStrip = styled.section`
+  position: relative;
+  z-index: 5;
+  margin-top: -1px;
+  padding: 16px 0 22px;
+  background: #faf8f3;
+  border-bottom: 1px solid var(--line);
+`;
+const ServicesGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  @media (max-width: 1100px) { grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 700px) { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 460px) { grid-template-columns: 1fr; }
+`;
+const Service = styled.article`
+  min-height: 190px;
+  padding: 23px 20px;
+  border: 1px solid #e0dbd1;
+  border-radius: 14px;
+  background: rgba(255,253,248,.72);
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+  &:hover { transform: translateY(-3px); background: #fff; box-shadow: 0 16px 34px rgba(49,40,28,.08); }
+  .icon {
+    width: 44px; height: 44px; display: grid; place-items: center;
+    border-radius: 11px; background: var(--gold-soft); color: var(--gold-dark);
+    font-family: Georgia, serif; font-size: 1.2rem;
+  }
+  h3 { margin: 22px 0 9px; font-family: Georgia, serif; font-size: 1.25rem; font-weight: 500; line-height: 1.05; }
+  p { margin: 0; color: var(--muted); font-size: .78rem; line-height: 1.6; }
+  a { display: inline-flex; margin-top: 16px; color: var(--gold-dark); text-decoration: none; }
+`;
+
+const Section = styled.section`
+  padding: 104px 0;
+  border-bottom: 1px solid var(--line);
+  @media (max-width: 760px) { padding: 72px 0; }
+`;
+const SectionHead = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 45px;
+  @media (max-width: 760px) { grid-template-columns: 1fr; gap: 14px; }
+  h2 { margin: 0; font-family: Georgia, serif; font-size: clamp(2.5rem, 5vw, 4.4rem); line-height: .98; font-weight: 500; letter-spacing: -.05em; }
+  p { margin: 0; max-width: 540px; color: var(--muted); line-height: 1.75; }
+`;
+const WorkGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1.25fr .75fr;
+  gap: 16px;
+  @media (max-width: 820px) { grid-template-columns: 1fr; }
+`;
+const WorkCard = styled.article`
+  min-height: 300px;
+  padding: 29px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  .label { color: var(--gold); font: 700 .62rem/1 "SFMono-Regular", Consolas, monospace; letter-spacing: .12em; }
+  h3 { margin: 55px 0 10px; font-family: Georgia, serif; font-size: clamp(1.75rem, 3vw, 2.55rem); font-weight: 500; letter-spacing: -.04em; }
+  p { margin: 0; color: var(--muted); max-width: 640px; line-height: 1.65; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 24px; }
+  .tag { padding: 6px 8px; border: 1px solid var(--line); color: #68655f; font-size: .62rem; border-radius: 999px; }
+`;
+const Process = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--line);
+  @media (max-width: 760px) { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 480px) { grid-template-columns: 1fr; }
+`;
+const Step = styled.article`
+  padding: 25px 22px 30px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  .step { color: var(--gold); font: 700 .65rem/1 "SFMono-Regular", Consolas, monospace; }
+  h3 { margin: 46px 0 8px; font-family: Georgia, serif; font-size: 1.45rem; font-weight: 500; }
+  p { margin: 0; color: var(--muted); font-size: .88rem; line-height: 1.65; }
+`;
+const DarkBand = styled.section`
+  background: var(--ink);
+  color: #f7f2e9;
+  padding: 94px 0;
+  .inner { display: grid; grid-template-columns: .8fr 1.2fr; gap: 70px; align-items: center; }
+  h2 { margin: 0; max-width: 500px; font-family: Georgia, serif; font-size: clamp(2.5rem, 5vw, 4.6rem); line-height: .98; font-weight: 500; }
+  p { color: #b9bec7; line-height: 1.75; }
+  @media (max-width: 820px) { .inner { grid-template-columns: 1fr; gap: 34px; } }
+`;
+const AiGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border: 1px solid rgba(255,255,255,.13);
+  @media (max-width: 560px) { grid-template-columns: 1fr; }
+`;
+const AiItem = styled.div`
+  padding: 23px;
+  min-height: 125px;
+  border-right: 1px solid rgba(255,255,255,.13);
+  border-bottom: 1px solid rgba(255,255,255,.13);
+  &:nth-child(2n) { border-right: 0; }
+  strong { display: block; margin-bottom: 7px; color: #f1d7aa; font-family: Georgia, serif; font-size: 1.15rem; font-weight: 500; }
+  span { color: #aeb3bc; font-size: .82rem; line-height: 1.55; }
+`;
+const AboutGrid = styled.div`
+  display: grid;
+  grid-template-columns: .72fr 1.28fr;
+  gap: 72px;
+  align-items: start;
+  @media (max-width: 800px) { grid-template-columns: 1fr; gap: 35px; }
+  img { width: 100%; max-width: 330px; aspect-ratio: 4/5; object-fit: cover; object-position: center top; border: 1px solid #d4cab9; }
+  .lead { margin: 0; max-width: 760px; font-family: Georgia, serif; font-size: clamp(1.8rem, 3vw, 2.8rem); line-height: 1.12; font-weight: 500; letter-spacing: -.035em; }
+  .copy { margin-top: 22px; max-width: 690px; color: var(--muted); line-height: 1.8; }
+`;
+const Principles = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin-top: 32px;
+  border: 1px solid var(--line);
+  background: var(--line);
+  @media (max-width: 650px) { grid-template-columns: 1fr; }
+  div { padding: 18px; background: var(--surface); }
+  strong { display: block; font-family: Georgia, serif; font-size: 1.05rem; font-weight: 500; }
+  span { display: block; margin-top: 6px; color: var(--muted); font-size: .72rem; line-height: 1.5; }
+`;
+const ContactBand = styled.section`
+  padding: 94px 0;
+  background: #e9dfce;
+  .inner { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: end; }
+  h2 { max-width: 750px; margin: 0; font-family: Georgia, serif; font-size: clamp(2.8rem, 6vw, 5.2rem); line-height: .94; font-weight: 500; letter-spacing: -.05em; }
+  p { max-width: 650px; margin: 18px 0 0; color: #68645d; line-height: 1.7; }
+  .contact-links { display: grid; gap: 11px; }
+  .contact-links a, .contact-links span { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; color: #494740; font-size: .75rem; font-weight: 800; }
+  @media (max-width: 760px) { .inner { grid-template-columns: 1fr; } }
+`;
+const Footer = styled.footer`
+  padding: 28px 0;
+  background: var(--ink);
+  color: #aeb3bc;
+  font-size: .7rem;
+  .inner { display: flex; justify-content: space-between; gap: 20px; }
+  a { color: #e6d6b7; text-decoration: none; }
+  @media (max-width: 620px) { .inner { flex-direction: column; } }
+`;
 
 type Project = { number: string; title: string; description: string; tags: string[] };
-const services: [string,string,string][]=[
-["01","Product Engineering","Senior-led architecture and delivery for products that need to move from idea to production."],
-["02","Scale & Performance","Find the real bottleneck across APIs, data, caching, queues and infrastructure."],
-["03","Modernize Legacy Systems","Evolve ageing applications incrementally instead of betting everything on a rewrite."],
-["04","AI Engineering","Integrate practical AI into real products, workflows and internal systems."],
-["05","Technical Consulting","Architecture reviews, modernization roadmaps, technical due diligence and advisory."],
-["06","Fractional CTO","Hands-on technical leadership when you need senior judgement without a full-time CTO."]
-];
-const projects: Project[]=[
-{number:"01",title:"Insurance Management Platform",description:"A unified platform for claims, policies, and user management with role-based workflows and reporting.",tags:["React","Next.js","Spring Boot","PostgreSQL"]},
-{number:"02",title:"Reward Management Platform",description:"Event-driven customer and reward services connected through asynchronous workflows and caching.",tags:["Java","Kafka","Redis","AWS"]},
-{number:"03",title:"Automotive Ecommerce Platform",description:"Vehicle journeys, order workflows and API orchestration across web and backend systems.",tags:["React","Node.js","Spring Boot","PostgreSQL"]}
-];
-const aiUseCases: [string,string][]=[
-["AI search & RAG","Turn internal documents and product knowledge into useful, grounded answers."],
-["Workflow automation","Remove repetitive operational steps while keeping humans in control."],
-["Document intelligence","Extract, classify and route information from unstructured documents."],
-["Product copilots","Add context-aware assistance where it improves an existing workflow."]
+type ServiceItem = { number: string; title: string; description: string; glyph: string };
+
+const services: ServiceItem[] = [
+  { number: "01", title: "Product Engineering", description: "MVPs to production-ready products with scalable architecture.", glyph: "◇" },
+  { number: "02", title: "Scale & Performance", description: "Improve reliability, performance and systems under growing load.", glyph: "▥" },
+  { number: "03", title: "Legacy Modernization", description: "Evolve existing systems incrementally without risky rewrites.", glyph: "≋" },
+  { number: "04", title: "AI Engineering", description: "Bring practical AI into products, workflows and internal tools.", glyph: "✦" },
+  { number: "05", title: "Technical Consulting", description: "Architecture reviews, roadmaps and hands-on technical guidance.", glyph: "◎" }
 ];
 
-const Landing=():ReactElement=><Page>
-<Header><C><HeaderInner><Brand href="#home">Ashish Kumar<span>Software Engineer · Technical Consultant</span></Brand><Nav><a href="#services">Services</a><a href="#work">Work</a><a href="#approach">Approach</a><a href="#about">About</a><a href="#insights">Insights</a></Nav><HeaderCta href="#contact">Book a call <FaArrowRight size={11}/></HeaderCta></HeaderInner></C></Header>
-<main>
-<Hero id="home"><C><HeroGrid><div><Eyebrow>Technical Consultant · Software Engineer · Fractional CTO</Eyebrow><H1>Modernize.<br/><span>Scale.</span><br/>Build what matters.</H1><HeroCopy>I help companies solve hard software problems — from product architecture and legacy modernization to scalable systems and practical AI.</HeroCopy><Actions><Primary href="#contact">Start a conversation <FaArrowRight size={12}/></Primary><Secondary href="#work">Explore my work</Secondary></Actions><Proof><ProofItem><strong>5+</strong><span>Years engineering</span></ProofItem><ProofItem><strong>20+</strong><span>Projects delivered</span></ProofItem><ProofItem><strong>3</strong><span>Core industries</span></ProofItem><ProofItem><strong>100%</strong><span>Hands-on</span></ProofItem></Proof></div><PortraitPanel><PortraitNote>Engineering judgment<br/>on demand.</PortraitNote><Portrait src={photo} alt="Ashish Kumar"/></PortraitPanel></HeroGrid></C></Hero>
-<Section id="services"><C><SectionHead><div><Eyebrow>My services</Eyebrow><h2>Technical problems into business progress.</h2></div><p>Focused consulting and delivery across the software lifecycle, with practical AI where it creates measurable value.</p></SectionHead><ServicesGrid>{services.map(([n,t,d])=><Service key={n}><span className="number">{n}</span><h3>{t}</h3><p>{d}</p><a href="#contact">Discuss this <FaArrowRight size={10}/></a></Service>)}</ServicesGrid></C></Section>
-<Section id="work"><C><SectionHead><div><Eyebrow>Selected work</Eyebrow><h2>Real systems. Real constraints.</h2></div><p>The technology matters, but the interesting part is the problem, the trade-offs and the system that has to keep working after launch.</p></SectionHead><WorkGrid>{projects.map(({number,title,description,tags})=><WorkCard key={number}><span className="label">CASE STUDY / {number}</span><h3>{title}</h3><p>{description}</p><div className="tags">{tags.map(tag=><span className="tag" key={tag}>{tag}</span>)}</div></WorkCard>)}</WorkGrid></C></Section>
-<Section id="approach"><C><SectionHead><div><Eyebrow>My approach</Eyebrow><h2>A clear path through complicated problems.</h2></div><p>I start with the business problem, make the technical constraints visible, then choose an architecture that the team can actually operate.</p></SectionHead><Process>{[["01","Understand","Clarify goals, constraints, failure modes and what success actually means."],["02","Architect","Choose boundaries, data flows and technology with explicit trade-offs."],["03","Build","Implement iteratively with quality, testing and useful visibility."],["04","Improve","Measure real behaviour and keep improving the system from evidence."]].map(([s,t,d])=><Step key={s}><span className="step">{s}</span><h3>{t}</h3><p>{d}</p></Step>)}</Process></C></Section>
-<DarkBand id="ai"><C><div className="inner"><div><Eyebrow>AI engineering</Eyebrow><h2>AI that earns its place.</h2><p>I design AI-assisted capabilities around real data, workflows and measurable outcomes — not demos looking for a problem.</p><Actions><Primary href="#contact">Discuss an AI initiative <FaArrowRight size={12}/></Primary></Actions></div><AiGrid>{aiUseCases.map(([t,d])=><AiItem key={t}><strong>{t}</strong><span>{d}</span></AiItem>)}</AiGrid></div></C></DarkBand>
-<Section id="about"><C><SectionHead><div><Eyebrow>About</Eyebrow><h2>Senior engineering, without the theatre.</h2></div><p>A hands-on engineer who likes difficult systems, clear communication and practical decisions.</p></SectionHead><AboutGrid><img src={photo} alt="Ashish Kumar"/><div><p className="lead">I enjoy turning unclear requirements, tricky systems and rough ideas into software people can actually use.</p><p className="copy">My work spans Insurance, E-commerce and EdTech, with a focus on React, Next.js, Java, Spring Boot, Node.js, PostgreSQL, Redis, Kafka, AWS and distributed systems.</p><Principles><div><strong>Evolve before you rewrite.</strong><span>Prefer incremental change when the business needs continuity.</span></div><div><strong>Measure before you optimize.</strong><span>Find the bottleneck before changing the architecture.</span></div><div><strong>Use AI where it pays.</strong><span>Technology should solve a real workflow, not decorate a roadmap.</span></div></Principles></div></AboutGrid></C></Section>
-<Section id="insights"><C><SectionHead><div><Eyebrow>Insights</Eyebrow><h2>Sharing what I learn.</h2></div><p>Architecture notes, scaling lessons, modernization patterns and practical AI engineering.</p></SectionHead><WorkGrid><WorkCard><span className="label">ARCHITECTURE</span><h3>Designing scalable systems without over-engineering.</h3><p>Patterns, trade-offs and lessons from building APIs, distributed workflows and data-heavy applications.</p></WorkCard><WorkCard><span className="label">MODERNIZATION</span><h3>When to evolve a legacy system instead of rewriting it.</h3><p>A practical way to identify boundaries, reduce risk and modernize incrementally.</p></WorkCard></WorkGrid></C></Section>
-<Section><C><SectionHead><div><Eyebrow>Testimonials</Eyebrow><h2>Trusted by teams that value clarity.</h2></div><p>Proof-focused testimonial space, ready for real client or colleague quotes.</p></SectionHead><QuoteGrid>{["Ashish combines strong technical depth with a practical understanding of the business problem.","He brings structure to complicated systems and communicates trade-offs clearly.","A hands-on engineer who thinks beyond the immediate ticket and considers the system as a whole."].map((q,i)=><Quote key={i}><FaQuoteLeft size={15}/><p>{q}</p><cite>Project collaborator · {i+1}</cite></Quote>)}</QuoteGrid></C></Section>
-<ContactBand id="contact"><C><div className="inner"><div><Eyebrow>Get in touch</Eyebrow><h2>Tell me what you're dealing with.</h2><p>I’ll give you an honest read on the problem, the likely path forward, and whether I’m the right person to help.</p><Actions><Primary href="mailto:ashish.kumar19097@gmail.com?subject=Technical%20consulting%20enquiry">Email me <FaEnvelope size={12}/></Primary><Secondary href="/new.pdf">Download resume</Secondary></Actions></div><div className="contact-links"><a href="mailto:ashish.kumar19097@gmail.com"><FaEnvelope/>ashish.kumar19097@gmail.com</a><a href="https://www.linkedin.com/" target="_blank" rel="noreferrer"><FaLinkedin/>LinkedIn</a><a href="https://github.com/ashkr19" target="_blank" rel="noreferrer"><FaGithub/>GitHub</a><span><FaLocationDot/>Bengaluru, India · Remote</span></div></div></C></ContactBand>
-</main>
-<Footer><C><div className="inner"><span>© {new Date().getFullYear()} Ashish Kumar · Pragmatic engineering for growing companies.</span><a href="#home">Back to top ↑</a></div></C></Footer>
-</Page>;
+const projects: Project[] = [
+  { number: "01", title: "Insurance Management Platform", description: "A unified platform for claims, policies, and user management with role-based workflows and reporting.", tags: ["React", "Next.js", "Spring Boot", "PostgreSQL"] },
+  { number: "02", title: "Reward Management Platform", description: "Event-driven customer and reward services connected through asynchronous workflows and caching.", tags: ["Java", "Kafka", "Redis", "AWS"] },
+  { number: "03", title: "Automotive Ecommerce Platform", description: "Vehicle journeys, order workflows and API orchestration across web and backend systems.", tags: ["React", "Node.js", "Spring Boot", "PostgreSQL"] }
+];
+
+const aiUseCases: [string, string][] = [
+  ["AI search & RAG", "Turn internal documents and product knowledge into useful, grounded answers."],
+  ["Workflow automation", "Remove repetitive operational steps while keeping humans in control."],
+  ["Document intelligence", "Extract, classify and route information from unstructured documents."],
+  ["Product copilots", "Add context-aware assistance where it improves an existing workflow."]
+];
+
+const Landing = (): ReactElement => (
+  <Page>
+    <Header>
+      <C>
+        <HeaderInner>
+          <Brand href="#home">Ashish Kumar<span>Software Engineer · Technical Consultant</span></Brand>
+          <Nav>
+            <a href="#home">Home</a><a href="#work">Work</a><a href="#services">Services</a><a href="#approach">Approach</a><a href="#about">About</a><a href="#insights">Blog</a>
+          </Nav>
+          <HeaderCta href="#contact">Let's Talk <FaArrowRight size={11} /></HeaderCta>
+        </HeaderInner>
+      </C>
+    </Header>
+
+    <main>
+      <Hero id="home">
+        <C>
+          <HeroGrid>
+            <HeroContent>
+              <EyebrowLine><Eyebrow>Build · Scale · Modernize · AI</Eyebrow></EyebrowLine>
+              <H1>Modernize.<br />Scale.<br /><span>Build What Matters.</span></H1>
+              <HeroCopy>I help companies build, scale, and modernize software — from architecture and technical consulting to hands-on delivery and practical AI engineering.</HeroCopy>
+              <Actions>
+                <Primary href="#contact">Start a project <FaArrowRight size={12} /></Primary>
+                <Secondary href="#work">View my work</Secondary>
+              </Actions>
+              <Proof>
+                <ProofItem><strong>5+</strong><span>Years experience</span></ProofItem>
+                <ProofItem><strong>3</strong><span>Core industries</span></ProofItem>
+                <ProofItem><strong>80%+</strong><span>Test coverage on key projects</span></ProofItem>
+              </Proof>
+              <HandNote>Engineering<br />judgment<br />on demand.</HandNote>
+            </HeroContent>
+
+            <PortraitStage>
+              <PortraitGlow />
+              <Portrait src={photo} alt="Ashish Kumar" />
+              <StatCard>
+                <Stat><strong>5+</strong><span>Years Experience</span></Stat>
+                <Stat><strong>3</strong><span>Insurance · E-commerce · EdTech</span></Stat>
+                <Stat><strong>Full Stack</strong><span>Frontend · Backend · Cloud</span></Stat>
+                <Stat><strong>Remote</strong><span>Available for projects</span></Stat>
+              </StatCard>
+            </PortraitStage>
+          </HeroGrid>
+        </C>
+      </Hero>
+
+      <ServiceStrip id="services">
+        <C>
+          <ServicesGrid>
+            {services.map(({ number, title, description, glyph }) => (
+              <Service key={number}>
+                <div className="icon">{glyph}</div>
+                <h3>{title}</h3>
+                <p>{description}</p>
+                <a href="#contact" aria-label={`Discuss ${title}`}><FaArrowRight size={12} /></a>
+              </Service>
+            ))}
+          </ServicesGrid>
+        </C>
+      </ServiceStrip>
+
+      <Section id="work">
+        <C>
+          <SectionHead>
+            <div><Eyebrow>Selected work</Eyebrow><h2>Real systems.<br />Real constraints.</h2></div>
+            <p>The technology matters, but the interesting part is the problem, the trade-offs and the system that has to keep working after launch.</p>
+          </SectionHead>
+          <WorkGrid>
+            {projects.map(({ number, title, description, tags }) => (
+              <WorkCard key={number}>
+                <span className="label">CASE STUDY / {number}</span>
+                <h3>{title}</h3>
+                <p>{description}</p>
+                <div className="tags">{tags.map(tag => <span className="tag" key={tag}>{tag}</span>)}</div>
+              </WorkCard>
+            ))}
+          </WorkGrid>
+        </C>
+      </Section>
+
+      <Section id="approach">
+        <C>
+          <SectionHead>
+            <div><Eyebrow>My approach</Eyebrow><h2>A clear path through complicated problems.</h2></div>
+            <p>I start with the business problem, make the technical constraints visible, then choose an architecture the team can actually operate.</p>
+          </SectionHead>
+          <Process>
+            {[
+              ["01", "Understand", "Clarify goals, constraints, failure modes and what success actually means."],
+              ["02", "Architect", "Choose boundaries, data flows and technology with explicit trade-offs."],
+              ["03", "Build", "Implement iteratively with quality, testing and useful visibility."],
+              ["04", "Improve", "Measure real behaviour and keep improving the system from evidence."]
+            ].map(([step, title, description]) => (
+              <Step key={step}><span className="step">{step}</span><h3>{title}</h3><p>{description}</p></Step>
+            ))}
+          </Process>
+        </C>
+      </Section>
+
+      <DarkBand id="ai">
+        <C>
+          <div className="inner">
+            <div>
+              <Eyebrow>AI engineering</Eyebrow>
+              <h2>AI that earns its place.</h2>
+              <p>I design AI-assisted capabilities around real data, workflows and measurable outcomes — not demos looking for a problem.</p>
+              <Actions><Primary href="#contact">Discuss an AI initiative <FaArrowRight size={12} /></Primary></Actions>
+            </div>
+            <AiGrid>{aiUseCases.map(([title, description]) => <AiItem key={title}><strong>{title}</strong><span>{description}</span></AiItem>)}</AiGrid>
+          </div>
+        </C>
+      </DarkBand>
+
+      <Section id="about">
+        <C>
+          <SectionHead>
+            <div><Eyebrow>About</Eyebrow><h2>Senior engineering, without the theatre.</h2></div>
+            <p>Hands-on engineering with a focus on clear communication, practical architecture and software that survives real-world constraints.</p>
+          </SectionHead>
+          <AboutGrid>
+            <img src={photo} alt="Ashish Kumar" />
+            <div>
+              <p className="lead">I enjoy turning unclear requirements, tricky systems and rough ideas into software people can actually use.</p>
+              <p className="copy">My work spans Insurance, E-commerce and EdTech, with a focus on React, Next.js, Java, Spring Boot, Node.js, PostgreSQL, Redis, Kafka, AWS and distributed systems.</p>
+              <Principles>
+                <div><strong>Evolve before you rewrite.</strong><span>Prefer incremental change when the business needs continuity.</span></div>
+                <div><strong>Measure before you optimize.</strong><span>Find the bottleneck before changing the architecture.</span></div>
+                <div><strong>Use AI where it pays.</strong><span>Technology should solve a real workflow, not decorate a roadmap.</span></div>
+              </Principles>
+            </div>
+          </AboutGrid>
+        </C>
+      </Section>
+
+      <Section id="insights">
+        <C>
+          <SectionHead>
+            <div><Eyebrow>Insights</Eyebrow><h2>Engineering notes worth sharing.</h2></div>
+            <p>Architecture, scaling, modernization, debugging and practical AI engineering.</p>
+          </SectionHead>
+          <WorkGrid>
+            <WorkCard><span className="label">ARCHITECTURE</span><h3>Designing scalable systems without over-engineering.</h3><p>Patterns, trade-offs and lessons from APIs, distributed workflows and data-heavy applications.</p></WorkCard>
+            <WorkCard><span className="label">MODERNIZATION</span><h3>When to evolve a legacy system instead of rewriting it.</h3><p>A practical way to identify boundaries, reduce risk and modernize incrementally.</p></WorkCard>
+          </WorkGrid>
+        </C>
+      </Section>
+
+      <ContactBand id="contact">
+        <C>
+          <div className="inner">
+            <div>
+              <Eyebrow>Get in touch</Eyebrow>
+              <h2>Tell me what you're dealing with.</h2>
+              <p>I’ll give you a practical read on the problem, the likely path forward, and how I can contribute.</p>
+              <Actions>
+                <Primary href="mailto:ashish.kumar19097@gmail.com?subject=Technical%20consulting%20enquiry">Email me <FaEnvelope size={12} /></Primary>
+                <Secondary href="/new.pdf">Download resume</Secondary>
+              </Actions>
+            </div>
+            <div className="contact-links">
+              <a href="mailto:ashish.kumar19097@gmail.com"><FaEnvelope />ashish.kumar19097@gmail.com</a>
+              <a href="https://github.com/ashkr19" target="_blank" rel="noreferrer"><FaGithub />GitHub</a>
+              <span><FaLocationDot />Bengaluru, India · Remote</span>
+            </div>
+          </div>
+        </C>
+      </ContactBand>
+    </main>
+
+    <Footer>
+      <C><div className="inner"><span>© {new Date().getFullYear()} Ashish Kumar · Software Engineering & Technical Consulting.</span><a href="#home">Back to top ↑</a></div></C>
+    </Footer>
+  </Page>
+);
 
 export default Landing;
