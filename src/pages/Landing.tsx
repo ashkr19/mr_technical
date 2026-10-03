@@ -97,7 +97,7 @@ const Hero = styled.section`
   padding: 0;
 `;
 const HeroGrid = styled.div`
-  min-height: 365px;
+  min-height: 365px;\n  border-radius: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: stretch;
@@ -202,7 +202,7 @@ const Proof = styled.div`\n  display: none;\n
   @media (max-width: 560px) { grid-template-columns: 1fr; }
 `;
 const ProofItem = styled.div`
-  padding: 11px 14px;
+  padding: 13px 15px;
   border-right: 1px solid var(--line);
   &:last-child { border-right: 0; }
   strong {
@@ -238,9 +238,9 @@ const PortraitGlow = styled.div`
   width: 420px;
   height: 420px;
   border-radius: 50%;
-  background: rgba(226,210,184,.5);
-  left: 3%;
-  bottom: -20px;
+  background: radial-gradient(circle, rgba(226,210,184,.65) 0%, rgba(246,238,224,.45) 55%, rgba(246,238,224,0) 72%);
+  left: -4%;
+  bottom: -35px;
   @media (max-width: 560px) { width: 390px; height: 390px; left: 50%; transform: translateX(-50%); }
 `;
 const Portrait = styled.img`
@@ -249,16 +249,16 @@ const Portrait = styled.img`
   width: 100%;
   height: 100%;
   object-fit: contain;
-  object-position: center 26%;
-  filter: saturate(.94) contrast(1.01);
+  object-position: center 16%;
+  filter: saturate(.9) contrast(1.02) brightness(1.03);
   @media (max-width: 1000px) { width: min(650px, 100%); margin: 0 auto; }
 `;
 const StatCard = styled.aside`
   position: absolute;
   z-index: 4;
   right: 0;
-  top: 38px;
-  width: 145px;
+  top: 28px;
+  width: 152px;
   padding: 11px 14px;
   border: 1px solid rgba(181,168,146,.65);
   border-radius: 11px;
