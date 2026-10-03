@@ -11,10 +11,14 @@ import { Skills } from "../components/skills/Skills";
 import { Contact } from "../components/contact/Contact";
 import { Services } from "../components/service/Services";
 import { AboutMe } from "../components/about/AboutMe";
+import { Projects } from "../components/projects/Projects";
+import { Engineering } from "../components/engineering/Engineering";
+import { Freelance } from "../components/freelance/Freelance";
 
 type PageContentCSSProps = {
   left: string;
 };
+
 const Content = styled.div`
   width: 100%;
   height: 100vh;
@@ -29,17 +33,16 @@ const NavContent = styled.main<PageContentCSSProps>`
   margin-inline: 1.2rem;
   overflow-y: hidden;
   width: -webkit-fill-available;
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
   display: flex;
   flex-direction: column;
-  overflow-wrap: anywhere;
 `;
 
 const Landing = (): ReactElement => {
   return (
     <Content id="content">
       <PageContent />
-      <SideNavigationBar></SideNavigationBar>
+      <SideNavigationBar />
     </Content>
   );
 };
@@ -50,14 +53,15 @@ const PageContent = () => {
   const getPageLeftPosition = (): string => {
     switch (screenType) {
       case "desktop":
-        return `300px`;
+        return "300px";
       case "mobile":
       case "tabs":
-        return `0`;
+        return "0";
       default:
         return "0";
     }
   };
+
   return (
     <>
       <a className="skip-link" href="#main-content">
@@ -68,6 +72,9 @@ const PageContent = () => {
         <Introduction />
         <Skills />
         <Services />
+        <Projects />
+        <Engineering />
+        <Freelance />
         <AboutMe />
         <Contact />
         <Footer />
