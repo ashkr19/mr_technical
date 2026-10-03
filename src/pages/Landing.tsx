@@ -36,7 +36,7 @@ const Header = styled.header`
   backdrop-filter: blur(16px);
 `;
 const HeaderInner = styled.div`
-  min-height: 76px;
+  min-height: 58px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -67,7 +67,7 @@ const Nav = styled.nav`
   a {
     text-decoration: none;
     color: #313945;
-    padding: 30px 0 27px;
+    padding: 21px 0 19px;
     border-bottom: 2px solid transparent;
     &:hover { color: var(--gold-dark); border-bottom-color: var(--gold); }
   }
@@ -77,12 +77,12 @@ const HeaderCta = styled.a`
   display: inline-flex;
   align-items: center;
   gap: 0;
-  padding: 13px 20px;
+  padding: 10px 18px;
   background: var(--gold-dark);
   color: #fff !important;
   border-radius: 8px;
   text-decoration: none;
-  font-size: .8rem;
+  font-size: .68rem;
   font-weight: 700;
   box-shadow: 0 8px 20px rgba(118,82,31,.14);
 `;
@@ -94,10 +94,10 @@ const Hero = styled.section`
   background:
     radial-gradient(circle at 72% 45%, rgba(255,255,255,.9), transparent 31%),
     linear-gradient(90deg, #faf7f0 0%, #faf7f0 51%, #eee5d6 100%);
-  padding: 42px 0 0;
+  padding: 0;
 `;
 const HeroGrid = styled.div`
-  min-height: 610px;
+  min-height: 365px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: stretch;
@@ -107,7 +107,7 @@ const HeroGrid = styled.div`
 const HeroContent = styled.div`
   position: relative;
   z-index: 2;
-  padding: 42px 18px 48px 0;
+  padding: 34px 16px 26px 0;
   @media (max-width: 1000px) { padding-bottom: 35px; }
 `;
 const Eyebrow = styled.p`
@@ -132,8 +132,8 @@ const H1 = styled.h1`
   max-width: 100%;
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(3.45rem, 5.55vw, 5.65rem);
-  line-height: .91;
+  font-size: clamp(3rem, 4.65vw, 4.8rem);
+  line-height: .88;
   letter-spacing: -.065em;
   font-weight: 500;
   span { color: var(--gold-dark); font-style: italic; }
@@ -141,23 +141,23 @@ const H1 = styled.h1`
 `;
 const HeroCopy = styled.p`
   max-width: 620px;
-  margin: 25px 0 0;
+  margin: 18px 0 0;
   color: #424852;
-  font-size: clamp(.9rem, 1.12vw, 1.08rem);
-  line-height: 1.7;
+  font-size: clamp(.72rem, .9vw, .9rem);
+  line-height: 1.5;
 `;
 const Actions = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 13px;
-  margin-top: 29px;
+  margin-top: 17px;
 `;
 const Primary = styled.a`
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 15px 22px;
+  padding: 10px 17px;
   border-radius: 8px;
   background: var(--gold-dark);
   color: #fff !important;
@@ -172,7 +172,7 @@ const Secondary = styled.a`
   align-items: center;
   justify-content: center;
   gap: 9px;
-  padding: 14px 21px;
+  padding: 9px 17px;
   border: 1px solid #9d8d75;
   border-radius: 8px;
   text-decoration: none;
@@ -192,30 +192,30 @@ const HandNote = styled.div`
   text-align: center;
   @media (max-width: 1000px) { display: none; }
 `;
-const Proof = styled.div`
+const Proof = styled.div`\n  display: none;\n
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   max-width: 620px;
-  margin-top: 43px;
+  margin-top: 24px;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   @media (max-width: 560px) { grid-template-columns: 1fr; }
 `;
 const ProofItem = styled.div`
-  padding: 17px 18px;
+  padding: 11px 14px;
   border-right: 1px solid var(--line);
   &:last-child { border-right: 0; }
   strong {
     display: block;
     font-family: Georgia, serif;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 500;
   }
   span {
     display: block;
     margin-top: 4px;
     color: var(--muted);
-    font-size: .67rem;
+    font-size: .55rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: .08em;
@@ -225,22 +225,22 @@ const ProofItem = styled.div`
 
 const PortraitStage = styled.div`
   position: relative;
-  min-height: 610px;
+  min-height: 365px;
   align-self: end;
   display: flex;
   justify-content: flex-end;
   overflow: visible;
-  @media (max-width: 1000px) { min-height: 560px; }
-  @media (max-width: 560px) { min-height: 430px; }
+  @media (max-width: 1000px) { min-height: 460px; }
+  @media (max-width: 560px) { min-height: 380px; }
 `;
 const PortraitGlow = styled.div`
   position: absolute;
-  width: 570px;
-  height: 570px;
+  width: 420px;
+  height: 420px;
   border-radius: 50%;
   background: rgba(226,210,184,.5);
   left: 3%;
-  bottom: 40px;
+  bottom: -20px;
   @media (max-width: 560px) { width: 390px; height: 390px; left: 50%; transform: translateX(-50%); }
 `;
 const Portrait = styled.img`
@@ -249,7 +249,7 @@ const Portrait = styled.img`
   width: 100%;
   height: 100%;
   object-fit: contain;
-  object-position: center bottom;
+  object-position: center 26%;
   filter: saturate(.94) contrast(1.01);
   @media (max-width: 1000px) { width: min(650px, 100%); margin: 0 auto; }
 `;
@@ -257,9 +257,9 @@ const StatCard = styled.aside`
   position: absolute;
   z-index: 4;
   right: 0;
-  top: 66px;
-  width: 190px;
-  padding: 18px 20px;
+  top: 38px;
+  width: 145px;
+  padding: 11px 14px;
   border: 1px solid rgba(181,168,146,.65);
   border-radius: 11px;
   background: rgba(255,253,248,.9);
@@ -269,18 +269,18 @@ const StatCard = styled.aside`
   @media (max-width: 560px) { right: 2px; width: 150px; padding: 17px; }
 `;
 const Stat = styled.div`
-  padding: 13px 0;
+  padding: 8px 0;
   border-bottom: 1px solid #d8d0c3;
   &:last-child { border-bottom: 0; }
-  strong { display: block; font-family: Georgia, serif; font-size: 1.62rem; font-weight: 500; }
-  span { display: block; margin-top: 3px; color: #4d5259; font-size: .72rem; line-height: 1.35; }
+  strong { display: block; font-family: Georgia, serif; font-size: 1.18rem; font-weight: 500; }
+  span { display: block; margin-top: 3px; color: #4d5259; font-size: .58rem; line-height: 1.25; }
 `;
 
 const ServiceStrip = styled.section`
   position: relative;
   z-index: 5;
   margin-top: -1px;
-  padding: 12px 0 16px;
+  padding: 8px 0 10px;
   background: #faf8f3;
   border-bottom: 1px solid var(--line);
 `;
@@ -293,21 +293,21 @@ const ServicesGrid = styled.div`
   @media (max-width: 460px) { grid-template-columns: 1fr; }
 `;
 const Service = styled.article`
-  min-height: 174px;
-  padding: 18px 17px;
+  min-height: 112px;
+  padding: 12px 13px;
   border: 1px solid #e0dbd1;
   border-radius: 10px;
   background: rgba(255,253,248,.72);
   transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
   &:hover { transform: translateY(-3px); background: #fff; box-shadow: 0 16px 34px rgba(49,40,28,.08); }
   .icon {
-    width: 38px; height: 38px; display: grid; place-items: center;
+    width: 28px; height: 28px; display: grid; place-items: center;
     border-radius: 9px; background: var(--gold-soft); color: var(--gold-dark);
     font-family: Georgia, serif; font-size: 1.2rem;
   }
-  h3 { margin: 17px 0 8px; font-family: Georgia, serif; font-size: 1.08rem; font-weight: 500; line-height: 1.05; }
-  p { margin: 0; color: var(--muted); font-size: .72rem; line-height: 1.48; }
-  a { display: inline-flex; margin-top: 16px; color: var(--gold-dark); text-decoration: none; }
+  h3 { margin: 9px 0 5px; font-family: Georgia, serif; font-size: .88rem; font-weight: 500; line-height: 1.05; }
+  p { margin: 0; color: var(--muted); font-size: .59rem; line-height: 1.35; }
+  a { display: inline-flex; margin-top: 7px; color: var(--gold-dark); text-decoration: none; }
 `;
 
 const Section = styled.section`
@@ -488,7 +488,7 @@ const Landing = (): ReactElement => (
               <Portrait src={photo} alt="Ashish Kumar" />
               <StatCard>
                 <Stat><strong>5+</strong><span>Years Experience</span></Stat>
-                <Stat><strong>3</strong><span>Insurance · E-commerce · EdTech</span></Stat>
+                <Stat><strong>3+</strong><span>Industries &amp; domains</span></Stat>
                 <Stat><strong>Full Stack</strong><span>Frontend · Backend · Cloud</span></Stat>
                 <Stat><strong>Remote</strong><span>Available for projects</span></Stat>
               </StatCard>
