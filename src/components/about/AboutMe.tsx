@@ -4,22 +4,76 @@ import { Wrapper } from "../common/Wrapper";
 import pho from "../../assets/images/ash.jpeg";
 
 const AboutLayout = styled.div`
-  display: flex;
-  gap: 1.5rem;
-  align-items: flex-start;
-  margin-top: 1.2rem;
+  display: grid;
+  grid-template-columns: minmax(220px, 0.45fr) minmax(0, 1fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: center;
+  margin-top: 2rem;
 
-  @media (max-width: 650px) {
-    flex-direction: column-reverse;
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
   }
 `;
 
-const AboutImage = styled.img`
-  width: 9rem;
-  height: 9rem;
-  flex: 0 0 9rem;
-  border-radius: 50%;
-  object-fit: cover;
+const Portrait = styled.div`
+  position: relative;
+  max-width: 300px;
+
+  img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 24px;
+    filter: saturate(0.85);
+    border: 1px solid var(--line);
+  }
+
+  &::after {
+    content: "ASHISH / BUILDER";
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+    padding: 0.45rem 0.6rem;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 999px;
+    background: rgba(7,10,18,0.72);
+    color: var(--lime);
+    font: 700 0.62rem/1 var(--font-mono);
+    backdrop-filter: blur(10px);
+  }
+`;
+
+const Copy = styled.div`
+  .lead {
+    max-width: 850px;
+    margin: 0;
+    color: #E2E8F0;
+    font-size: clamp(1.45rem, 3vw, 2.3rem);
+    line-height: 1.15;
+    letter-spacing: -0.035em;
+  }
+
+  .detail {
+    max-width: 720px;
+    margin-top: 1.3rem;
+    color: var(--muted);
+  }
+
+  .signals {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    margin-top: 1.5rem;
+  }
+
+  .signals span {
+    padding: 0.42rem 0.6rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: #CBD5E1;
+    font: 600 0.68rem/1 var(--font-mono);
+  }
 `;
 
 const AboutMe = () => {
@@ -29,35 +83,26 @@ const AboutMe = () => {
   return (
     <Wrapper id="about" inlineMargin={inlineMargin}>
       <header>
-        <h2 className="page-title">About Ashish</h2>
-        <div className="hr pb0" />
+        <p className="section-kicker">A LITTLE CONTEXT</p>
+        <h2 className="page-title">I like the part where things get complicated.</h2>
       </header>
       <AboutLayout>
-        <div>
-          <p>
-            I’m a Senior Software Engineer and Full Stack Developer with 5+
-            years of experience building production applications across
-            Insurance, E-commerce and EdTech.
+        <Portrait><img src={pho} alt="Portrait of Ashish Kumar" /></Portrait>
+        <Copy>
+          <p className="lead">
+            I’m a software engineer who enjoys turning unclear requirements,
+            tricky systems and rough ideas into something people can actually use.
           </p>
-          <p>
-            My primary engineering stack is Java, Spring Boot, React and
-            Node.js, with experience designing REST APIs, microservices,
-            data-driven applications, asynchronous workflows, caching and
-            cloud-based systems.
+          <p className="detail">
+            My work has taken me through Insurance, E-commerce and EdTech.
+            I’m most interested in the intersection of product behaviour and
+            engineering underneath it: APIs, data, distributed workflows,
+            performance and practical AI-assisted experiences.
           </p>
-          <p>
-            I enjoy problems where software needs to be more than functional:
-            it should be reliable, observable, maintainable and ready for
-            production.
-          </p>
-          <p>
-            I’m also interested in AI-powered applications, system design,
-            distributed systems and practical technical problem solving. I
-            work with businesses and individuals who need help turning an
-            idea, workflow or technical problem into working software.
-          </p>
-        </div>
-        <AboutImage src={pho} alt="Portrait of Ashish Kumar" />
+          <div className="signals">
+            <span>CURIOUS</span><span>SYSTEMS THINKING</span><span>HANDS-ON</span><span>ALWAYS LEARNING</span>
+          </div>
+        </Copy>
       </AboutLayout>
     </Wrapper>
   );

@@ -1,49 +1,37 @@
 import styled from "styled-components";
 
-const FooterContainer = styled.div`
+const FooterContainer = styled.footer`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
   width: 100%;
-  text-align: center;
-  border-top: 1px solid rgb(119, 119, 119);
-  margin-bottom: 4rem;
-`;
+  padding: 2rem clamp(1rem, 4vw, 3.5rem);
+  margin-bottom: 2rem;
+  border-top: 1px solid var(--line);
+  color: #64748B;
 
-const Copyright = styled.p`
-  small {
-    &.copyright {
-      font-size: 0.8rem; /* Adjust the font size as needed */
-    }
-  }
-`;
-
-const LegalNav = styled.nav`
-  small {
-    a.footer-nav {
-      text-decoration: underline;
-      text-underline-offset: 0.35rem;
-      text-decoration-thickness: 2px;
-      text-decoration-style: solid;
-      text-decoration-color: rgb(154, 198, 231);
-      color: black;
-      font-weight: 700;
-    }
+  @media (max-width: 600px) {
+    flex-direction: column;
   }
 `;
 
 const Footer = () => {
   return (
     <FooterContainer>
-      <Copyright>
-        <small className="copyright">
-          © {new Date().getFullYear()} Ashish Kumar.{" "}
-        </small>
-      </Copyright>
-      <LegalNav>
-        <small>
-            <a className="footer-nav" href={`${process.env.PUBLIC_URL}/new.pdf`} download>
-              RESUME
-            </a>{" "}
-        </small>
-      </LegalNav>
+      <small>© {new Date().getFullYear()} Ashish Kumar · built with curiosity.</small>
+      <a
+        href={`${process.env.PUBLIC_URL}/new.pdf`}
+        download
+        style={{
+          color: "var(--lime)",
+          textDecoration: "none",
+          font: "700 0.7rem/1 var(--font-mono)",
+          letterSpacing: "0.08em",
+        }}
+      >
+        DOWNLOAD RESUME ↗
+      </a>
     </FooterContainer>
   );
 };
