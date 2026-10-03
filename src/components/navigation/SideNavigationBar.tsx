@@ -143,13 +143,13 @@ const SideNavigationBar = (): ReactElement => {
 
 const NavScreen = () => {
   const navList = [
-    "Home",
-    "What I Build",
-    "Selected Work",
-    "Engineering",
-    "Freelance",
-    "About",
-    "Contact",
+    ["Home", "home"],
+    ["What I Build", "services"],
+    ["Selected Work", "projects"],
+    ["Engineering", "engineering"],
+    ["Freelance", "freelance"],
+    ["About", "about"],
+    ["Contact", "contact"],
   ];
 
   return (
@@ -162,10 +162,11 @@ const NavScreen = () => {
         alignItems: "center",
       }}
     >
-      {navList.map((item) => (
+      {navList.map(([label, targetId]) => (
         <UnderlinedText
-          key={item}
-          text={item}
+          key={label}
+          text={label}
+          targetId={targetId}
           tag="a"
           color="white"
           fontFamily="cursive"
