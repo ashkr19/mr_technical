@@ -2,7 +2,7 @@ import { ReactElement } from "react";
 import styled from "styled-components";
 import { ScreenType } from "../../utils/custom-types";
 import { useScreen, useScrollAndMenuContext } from "../../context/context";
-import photo from "../../assets/images/ash.jpeg";
+import photo from "../../assets/images/ash.png";
 import UnderlinedText from "../common/UnderlinedText";
 import { socialMediaIconElements } from "../../common/icons";
 

@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import styled from "styled-components";
 import { FaArrowRight, FaEnvelope, FaGithub, FaLinkedin, FaLocationDot } from "react-icons/fa6";
-import photo from "../assets/images/ash.jpeg";
+import photo from "../assets/images/ash.png";
 
 const Page = styled.div`
   --bg: #f7f3eb;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useScreen } from "../../context/context";
 import { Wrapper } from "../common/Wrapper";
-import pho from "../../assets/images/ash.jpeg";
+import pho from "../../assets/images/ash.png";
 const AboutLayout=styled.div`display:grid;grid-template-columns:260px minmax(0,1fr);gap:clamp(2rem,7vw,6rem);align-items:start;margin-top:2rem;@media(max-width:700px){grid-template-columns:1fr;}`;
 const Portrait=styled.div`max-width:260px;img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border:1px solid var(--line);border-radius:14px;filter:saturate(.8);}`;
 const Copy=styled.div`.lead{max-width:820px;margin:0;color:#E4E7EC;font-size:clamp(1.35rem,2.7vw,2.15rem);line-height:1.18;letter-spacing:-.035em;}.detail{max-width:720px;margin-top:1.25rem;color:var(--muted);}.signals{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem;}.signals span{padding:.38rem .5rem;border:1px solid var(--line);border-radius:7px;color:#B8C1CF;font:600 .63rem/1 var(--font-mono);}`;
