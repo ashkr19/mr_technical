@@ -1,13 +1,27 @@
-
-.con * {
-  box-sizing: border-box;
+:root {
+  --ink: #0f172a;
+  --muted: #64748b;
+  --surface: #ffffff;
+  --surface-soft: #f8fafc;
+  --line: #e2e8f0;
+  --brand: #0f766e;
+  --brand-bright: #14b8a6;
+  --accent: #00a6eb;
 }
 
-.con2 {
-  width: 60%;
-  padding: 16px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 8px;
-  border-radius: 3%;
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 80% 0%, rgba(20, 184, 166, 0.06), transparent 28rem),
+    #ffffff;
+  color: var(--ink);
+}
+
+.con * {
   box-sizing: border-box;
 }
 
@@ -16,7 +30,7 @@
 }
 
 .form-error {
-  color: red;
+  color: #dc2626;
   margin-top: 5px;
   font-size: 12px;
 }
@@ -25,11 +39,11 @@ label {
   display: block;
 }
 
-input[type="text"], textarea {
+input[type="text"],
+input[type="email"],
+textarea {
   width: 100%;
-  padding: 8px;
   box-sizing: border-box;
-  margin-top: 5px;
 }
 
 textarea {
@@ -45,16 +59,13 @@ textarea {
 @media (max-width: 720px) {
   .con {
     flex-direction: column;
-    /* background-color: red; */
   }
 
-  .con > div.con1 {
-    width: 100% !important;
-  }
-
+  .con > div.con1,
   .con2 {
     width: 100% !important;
   }
+
   .r1 {
     width: 100% !important;
     display: block !important;
