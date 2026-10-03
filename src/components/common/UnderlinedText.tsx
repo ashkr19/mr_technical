@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { HashLink as Link } from 'react-router-hash-link';
+import { HashLink as Link } from "react-router-hash-link";
 
 interface UnderlinedTextProps {
   text: string;
@@ -9,6 +9,7 @@ interface UnderlinedTextProps {
   underlinePosition: string;
   tag?: keyof JSX.IntrinsicElements;
   margin?: string;
+  targetId?: string;
 }
 
 const UnderlinedText: React.FC<UnderlinedTextProps> = ({
@@ -16,20 +17,21 @@ const UnderlinedText: React.FC<UnderlinedTextProps> = ({
   color,
   fontFamily,
   fontSize,
-  tag,
   underlinePosition,
   margin,
+  targetId,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+
   const style: React.CSSProperties = {
     color: color || "white",
-    fontFamily: "Roboto Slab",
+    fontFamily: fontFamily || "Roboto Slab",
     fontSize: fontSize || "1.9rem",
     padding: "0.5rem",
     textDecoration: "underline",
-    textUnderlineOffset: "0.45rem" || underlinePosition,
+    textUnderlineOffset: underlinePosition || "0.45rem",
     WebkitTextDecorationLine: "underline",
-    margin: margin,
+    margin,
   };
 
   const hoverStyle: React.CSSProperties = {
@@ -37,15 +39,13 @@ const UnderlinedText: React.FC<UnderlinedTextProps> = ({
     cursor: isHovered ? "pointer" : "default",
   };
 
-  const combinedStyle = { ...style, ...hoverStyle };
-
   return (
     <Link
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      style={combinedStyle}
+      style={{ ...style, ...hoverStyle }}
       smooth
-      to={`#${text.toLowerCase()}`}
+      to={`#${targetId || text.toLowerCase()}`}
     >
       {text}
     </Link>
