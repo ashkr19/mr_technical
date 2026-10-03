@@ -1,115 +1,66 @@
+import styled from "styled-components";
 import { useScreen } from "../../context/context";
 import { Wrapper } from "../common/Wrapper";
 
+const SkillGroups = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const SkillGroup = styled.article`
+  padding: 1.2rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  background: #f7f8fa;
+
+  h3 {
+    margin: 0 0 0.7rem;
+    font-size: 1.1rem;
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.6;
+  }
+`;
+
+const groups = [
+  ["Backend & APIs", "Java, Spring Boot, Node.js, Express.js, REST APIs, Microservices"],
+  ["Frontend", "React, Next.js, TypeScript, JavaScript, HTML5, CSS3"],
+  ["Data & Caching", "PostgreSQL, MongoDB, MySQL, Redis, JPA"],
+  ["Cloud & Delivery", "AWS, Docker, CI/CD, Jenkins, GitHub Actions"],
+  ["Distributed Systems", "Kafka, asynchronous workflows, service communication"],
+  ["Quality & Tools", "Jest, React Testing Library, Postman, Jira, GitHub"],
+];
 
 export const Skills = () => {
-    const screenType = useScreen();
-    const inlineMargin = screenType === "desktop" ? "1.2rem" : "0";
-    return (
-      <Wrapper id="skills" inlineMargin={inlineMargin}>
-        <header>
-          <h2 className="page-title">Skills</h2>
-          <div className="hr pb0" />
-        </header>
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "10px",
-            marginTop: "1.2rem",
-          }}
-        >
-          <img
-            src="https://camo.githubusercontent.com/8531c953b7b8d780328fe26bfe67a8b7aa1d643fc12ca494e4fcfcf4d07591b4/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f646172742d2532333031373543322e7376673f7374796c653d666f722d7468652d6261646765266c6f676f3d64617274266c6f676f436f6c6f723d7768697465"
-            alt="Dart"
-            loading="lazy"
-            decoding="async"
-          />
-          <img
-            src="https://camo.githubusercontent.com/5e7e215d9ff3a7c2e96d09232c11b2205565c841d1129dd2185ebd967284121f/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f68746d6c352d2532334533344632362e7376673f7374796c653d666f722d7468652d6261646765266c6f676f3d68746d6c35266c6f676f436f6c6f723d7768697465"
-            alt="HTML5"
-            loading="lazy"
-            decoding="async"
-          />
-          <img
-            src="https://camo.githubusercontent.com/6531a4161596e3d9fdab3d0499a7b7ce5c5c8b568be219f3e9707af042e575d2/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f637373332d2532333135373242362e7376673f7374796c653d666f722d7468652d6261646765266c6f676f3d63737333266c6f676f436f6c6f723d7768697465"
-            alt="CSS3"
-            loading="lazy"
-            decoding="async"
-          />
-          <img
-            src="https://camo.githubusercontent.com/53ec2e58e03ba275d9b3a386abd96a243cf744a1a7121bdf8262fc8ae6ebc335/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6a6176617363726970742d2532333332333333302e7376673f7374796c653d666f722d7468652d6261646765266c6f676f3d6a617661736372697074266c6f676f436f6c6f723d253233463744463145"
-            alt="JavaScript"
-            loading="lazy"
-            decoding="async"
-          />
-          <img
-            src="https://camo.githubusercontent.com/3babc94d778f96441b3a66615fb5ee88c6ed04f174ed49b04df92b071a7d0e80/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f72656163742d2532333230323332612e7376673f7374796c653d666f722d7468652d6261646765266c6f676f3d7265616374266c6f676f436f6c6f723d253233363144414642"
-            alt="React"
-            loading="lazy"
-            decoding="async"
-          />
-          <img
-            src="https://camo.githubusercontent.com/0d58facab1be74748c39244ff3d990ae8ddd765af40263ed006219154ba90649/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6e6f64652e6a732d3644413535463f7374796c653d666f722d7468652d6261646765266c6f676f3d6e6f64652e6a73266c6f676f436f6c6f723d7768697465"
-            alt="Node.js"
-            loading="lazy"
-            decoding="async"
-          />
-          <img
-            src="https://camo.githubusercontent.com/7e95531437f8c91626ae46cb69240160dfde5c39c1119c550cd174ba8a19e712/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4d6f6e676f44422d2532333465613934622e7376673f7374796c653d666f722d7468652d6261646765266c6f676f3d6d6f6e676f6462266c6f676f436f6c6f723d7768697465"
-            alt="MongoDB"
-            loading="lazy"
-            decoding="async"
-          />
-          <img
-            src="https://camo.githubusercontent.com/1bf0d1f3d3c56a35fb820e063b0fc6fed019ca6999c4c5abe17cfdbe3ce190c3/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f657870726573732e6a732d2532333430346435392e7376673f7374796c653d666f722d7468652d6261646765266c6f676f3d65787072657373266c6f676f436f6c6f723d253233363144414642"
-            alt="Express.js"
-            loading="lazy"
-            decoding="async"
-          />
-          <img
-            src="https://camo.githubusercontent.com/253f4842177fe68f329fc1713537477b92aca3f29edf52b1dbced68ae3262eed/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f66697265626173652d2532333033394245352e7376673f7374796c653d666f722d7468652d6261646765266c6f676f3d6669726562617365"
-            alt="Firebase"
-            loading="lazy"
-            decoding="async"
-          />
-          <img
-            src="https://camo.githubusercontent.com/a00920b123df05b3df5e368e509f18bacd65bc5909698fb42be5f35063550f47/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f747970657363726970742d2532333030374143432e7376673f7374796c653d666f722d7468652d6261646765266c6f676f3d74797065736372697074266c6f676f436f6c6f723d7768697465"
-            alt="TypeScript"
-            loading="lazy"
-            decoding="async"
-          />
-          <img
-            src="https://camo.githubusercontent.com/3950ae1ec338978e83c2e4f9cf76555e6a93f4c7e0ae1be7d52af02aae2935df/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f466c75747465722d2532333032353639422e7376673f7374796c653d666f722d7468652d6261646765266c6f676f3d466c7574746572266c6f676f436f6c6f723d7768697465"
-            alt="Flutter"
-            loading="lazy"
-            decoding="async"
-          />
-          <img
-            src="https://camo.githubusercontent.com/46da2c537428d5163a38512194e2110805271a7cc12b54e85cea9c5f53030336/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4157532d2532334646393930302e7376673f7374796c653d666f722d7468652d6261646765266c6f676f3d616d617a6f6e2d617773266c6f676f436f6c6f723d7768697465"
-            alt="Amazon Web Services"
-            loading="lazy"
-            decoding="async"
-          />
-          <img
-            src="https://camo.githubusercontent.com/b567cef5883c45213bc40464035437a42a2eb3c09465a88fc951575dbd31e32a/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f476f6f676c65253230436c6f75642d2532333432383546342e7376673f7374796c653d666f722d7468652d6261646765266c6f676f3d676f6f676c652d636c6f7564266c6f676f436f6c6f723d7768697465"
-            alt="Google Cloud"
-            loading="lazy"
-            decoding="async"
-          />
-          <img
-            src="https://camo.githubusercontent.com/3fb5c666007b264dde797b2d7e258cae7f336848f3408cef902f04c6065cc146/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6d7973716c2d2532333030662e7376673f7374796c653d666f722d7468652d6261646765266c6f676f3d6d7973716c266c6f676f436f6c6f723d7768697465"
-            alt="MySQL"
-            loading="lazy"
-            decoding="async"
-          />
-          <img
-            src="https://camo.githubusercontent.com/26e74d6ef4bb4726fc8f8a6b3d4136376d691ecf85c8d3b464bfbf4259e5698d/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6a6176612d2532334544384230302e7376673f7374796c653d666f722d7468652d6261646765266c6f676f3d6a617661266c6f676f436f6c6f723d7768697465"
-            alt="Java"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-      </Wrapper>
-    );
-  };
+  const screenType = useScreen();
+  const inlineMargin = screenType === "desktop" ? "1.2rem" : "0";
+
+  return (
+    <Wrapper id="skills" inlineMargin={inlineMargin}>
+      <header>
+        <h2 className="page-title">Technical Expertise</h2>
+        <div className="hr pb0" />
+      </header>
+      <p>
+        A production-focused full-stack toolkit spanning frontend, backend,
+        data, distributed systems, cloud delivery and testing.
+      </p>
+      <SkillGroups>
+        {groups.map(([title, description]) => (
+          <SkillGroup key={title}>
+            <h3>{title}</h3>
+            <p>{description}</p>
+          </SkillGroup>
+        ))}
+      </SkillGroups>
+    </Wrapper>
+  );
+};
