@@ -5,8 +5,8 @@ import { HashRouter, Route, Routes } from "react-router-dom";
 function App() {
   return (
     <HashRouter>
-       <Routes>
-        <Route path="/" element={<Landing/>}></Route>
+      <Routes>
+        <Route path="*" element={<Landing />} />
       </Routes>
     </HashRouter>
   );
