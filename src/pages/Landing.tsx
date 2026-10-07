@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaGithub, FaLinkedinIn, FaEnvelope, FaArrowRight, FaCode, FaPenNib, FaBug, FaBars, FaTimes } from "react-icons/fa";
 import "../App.css";
+import ashImage from "../assets/images/ash.jpeg";
 
 const projects = [
   { title: "Scalable Web Applications", text: "Production-focused web platforms built with Java, Spring Boot, React, Node.js and cloud-native services.", tech: "Java · Spring Boot · React · AWS" },
@@ -49,7 +50,7 @@ export default function Landing(): React.ReactElement {
             <div className="socials">
               <a href="https://github.com/ashkr19" target="_blank" rel="noreferrer" aria-label="GitHub"><FaGithub /></a>
               <a href="https://www.linkedin.com/in/ashish-kumar" target="_blank" rel="noreferrer" aria-label="LinkedIn"><FaLinkedinIn /></a>
-              <a href="mailto:hello@ashishkumar.dev" aria-label="Email"><FaEnvelope /></a>
+              <a href="mailto:ashish.kumar19097@gmail.com" aria-label="Email"><FaEnvelope /></a>
             </div>
           </div>
         </div>
@@ -117,7 +118,7 @@ export default function Landing(): React.ReactElement {
         <section id="about" className="section about">
           <SectionHeading title="Who am I?" intro="Beyond the stack." />
           <div className="about__grid">
-            <img src="/mr_technical/static/media/ash.f699f332b56c8e063187.jpeg" alt="Ashish Kumar" />
+            <img src={ashImage} alt="Ashish Kumar" />
             <div>
               <p>I’m a senior full-stack developer with experience across EdTech, Insurance, E-commerce and Supply Chain systems.</p>
               <p>My interests sit at the intersection of application development and deeper engineering: system design, distributed systems, performance, debugging, observability and AI-assisted products.</p>
